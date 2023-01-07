@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { HotelListComponent } from './hotel-list/hotel-list.component';
 
+import {NglModule} from 'ng-lightning';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HotelListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,NglModule
   ],
   providers: [],
   bootstrap: [AppComponent]
