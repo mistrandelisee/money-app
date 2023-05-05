@@ -1,0 +1,31 @@
+
+
+
+<article class="slds-card">
+
+  <div class="slds-card__header slds-grid">
+    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+      <input id="name"  type="email" name="email" [(ngModel)]="function_name" placeholder="function name"  class="slds-input" />
+      <button class="slds-button slds-button_brand" (click)="onClick()">
+        click
+      </button>
+      <div class="slds-no-flex">
+        <button class="slds-button slds-button_neutral">New</button>
+      </div>
+    </header>
+  </div>
+  <div class="slds-card__body slds-card__body_inner">
+    <div class="slds-card">
+      {{ result | json }}
+    </div>
+    <div class="slds-card slds-text-color_error">
+      {{ error | json }}
+    </div>
+  </div>
+  <footer class="slds-card__footer">
+    <a class="slds-card__footer-action" href="#"
+      >{{ isLoading }}
+      <span class="slds-assistive-text">Accounts</span>
+    </a>
+  </footer>
+</article>

@@ -1,0 +1,58 @@
+<p>register works!</p>
+{{ registerForm | json }}
+<div class="slds-grid slds-gutters">
+  <div class="slds-col slds-size_1-of-3"></div>
+  <div class="slds-col slds-size_1-of-3">
+    <article class="slds-card ">
+      <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+          <h5 class="slds-text-heading_medium">
+            Authentication
+          </h5>
+        </header>
+      </div>
+      <div class="slds-card__body slds-card__body_inner slds-clearfix
+      ">
+        <form (ngSubmit)="onSubmit()">
+          <div class="slds-form-element">
+            <label class="slds-form-element__label" for="form-element-01">Address</label>
+            <div class="slds-form-element__control">
+              <input id="name" type="email" name="email" [(ngModel)]="registerForm.email"
+                placeholder="Placeholder text…" class="slds-input" />
+            </div>
+          </div>
+          <div class="slds-form-element">
+            <label class="slds-form-element__label" for="form-element-01">password</label>
+            <div class="slds-form-element__control">
+              <input id="address" type="text" name="password" [(ngModel)]="registerForm.password"
+                placeholder="Placeholder text…" class="slds-input" />
+            </div>
+          </div>
+          <div class="slds-form-element">
+            <label class="slds-checkbox_toggle slds-grid">
+              <span class="slds-form-element__label slds-m-bottom_none">Action</span>
+              <input type="checkbox" name="checkbox-toggle-15" value="checkbox-toggle-15"
+                aria-describedby="checkbox-toggle-15" [(ngModel)]="registerForm.register" checked="" />
+              <span id="checkbox-toggle-15" class="slds-checkbox_faux_container" aria-live="assertive">
+                <span class="slds-checkbox_faux"></span>
+                <span class="slds-checkbox_on">Register</span>
+                <span class="slds-checkbox_off">Login</span>
+              </span>
+            </label>
+          </div>
+          <button class="slds-button slds-button_brand slds-float_right" type="submit">Submit</button>
+
+        </form>
+
+      </div>
+    </article>
+  </div>
+</div>
+
+
+<div class="slds-card">
+  {{ user | json }}
+</div>
+<div class="slds-card slds-text-color_error">
+  {{ error | json }}
+</div>

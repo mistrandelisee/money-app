@@ -1,2 +1,110 @@
-<h2>{{title}}</h2>
-<app-hotel-list></app-hotel-list>
+<!-- <h2>{{title}}</h2>
+<app-register></app-register>
+<app-hotel-list></app-hotel-list> -->
+
+
+<!-- <h1>{{title}}</h1>
+<nav>
+  <a routerLink="/heroes">Heroes</a>
+</nav> -->
+
+
+
+<div class="slds-context-bar">
+  <div class="slds-context-bar__primary">
+    <div
+      class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click slds-no-hover">
+      <div class="slds-context-bar__icon-action">
+        <button class="slds-button slds-icon-waffle_container slds-context-bar__button"
+          title="Description of the icon when needed">
+          <span class="slds-icon-waffle">
+            <span class="slds-r1"></span>
+            <span class="slds-r2"></span>
+            <span class="slds-r3"></span>
+            <span class="slds-r4"></span>
+            <span class="slds-r5"></span>
+            <span class="slds-r6"></span>
+            <span class="slds-r7"></span>
+            <span class="slds-r8"></span>
+            <span class="slds-r9"></span>
+          </span>
+          <span class="slds-assistive-text">Open App Launcher</span>
+        </button>
+      </div>
+      <span class="slds-context-bar__label-action slds-context-bar__app-name">
+        <span class="slds-truncate" title="App Name">App Name</span>
+      </span>
+    </div>
+  </div>
+  <nav class="slds-context-bar__secondary" role="navigation">
+    <ul class="slds-grid">
+      <li class="slds-context-bar__item slds-is-active">
+        <a routerLink="/home" class="slds-context-bar__label-action" title="Home">
+          <span class="slds-assistive-text">Current Page:</span>
+          <span class="slds-truncate" title="Home">Home</span>
+        </a>
+      </li>
+      <li class="slds-context-bar__item">
+        <a routerLink="/sign" class="slds-context-bar__label-action" title="Menu Item">
+          <span class="slds-truncate" title="Menu Item">register</span>
+        </a>
+      </li>
+      <li [class]="'slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click '+(open ? 'slds-is-open' : '') ">
+        <a  class="slds-context-bar__label-action" title="Menu Item" (click)="toggle()">
+          <span class="slds-truncate" title="Menu Item">Administration</span>
+        </a>
+        <div class="slds-context-bar__icon-action slds-p-left_none">
+          <button class="slds-button slds-button_icon slds-button_icon slds-context-bar__button" aria-haspopup="true" title="Open menu item submenu">
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"></use>
+            </svg>
+            <span class="slds-assistive-text">Open menu item submenu</span>
+          </button>
+        </div>
+        <div class="slds-dropdown slds-dropdown_right">
+          <ul class="slds-dropdown__list" role="menu">
+            <li class="slds-dropdown__item" role="presentation">
+              <a href="#" role="menuitem" tabindex="-1">
+                <span class="slds-truncate" title="Main action">
+                  <svg class="slds-icon slds-icon_x-small slds-icon-text-default slds-m-right_x-small" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
+                  </svg>Administration</span>
+              </a>
+            </li>
+            <li class="slds-dropdown__header slds-has-divider_top-space" role="separator">
+              <span>Menu header</span>
+            </li>
+            <li class="slds-dropdown__item" role="presentation">
+              <a routerLink="/city" role="menuitem" (click)="toggle()" tabindex="-1">
+                <span class="slds-truncate" title="Menu Item One">City</span>
+              </a>
+            </li>
+            <li class="slds-dropdown__item" role="presentation">
+              <a href="#" role="menuitem" tabindex="-1">
+                <span class="slds-truncate" title="Menu Item Two">Menu Item Two</span>
+              </a>
+            </li>
+            <li class="slds-dropdown__item" role="presentation">
+              <a href="#" role="menuitem" tabindex="-1">
+                <span class="slds-truncate" title="Menu Item Three">Menu Item Three</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="slds-context-bar__item">
+        <a routerLink="/transfert" class="slds-context-bar__label-action" title="Menu Item">
+          <span class="slds-truncate" title="Menu Item">transferts</span>
+        </a>
+      </li>
+      <li class="slds-context-bar__item">
+        <a routerLink="/test" class="slds-context-bar__label-action" title="Menu Item">
+          <span class="slds-truncate" title="Menu Item">test</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+
+<router-outlet></router-outlet>

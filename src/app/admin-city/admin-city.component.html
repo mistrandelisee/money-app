@@ -1,0 +1,84 @@
+<div class="slds-grid slds-gutters">
+  <div class="slds-col slds-size_2-of-3">
+    <span> {{incountries | json}} </span>
+  </div>
+  <div class="slds-col slds-size_1-of-3">
+    <span>
+      <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <h5 class="slds-text-heading_medium">
+              Create Country
+            </h5>
+          </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+          <div class="slds-form">
+            <div class="slds-form-element slds-form-element_horizontal">
+              <label class="slds-form-element__label" for="horizontal-input-id-01"><abbr class="slds-required" title="required">* </abbr>Name</label>
+              <div class="slds-form-element__control">
+                <input (change)="changeSearch($event)" list="countries" type="text" name="name" [(ngModel)]="_country.name" id="horizontal-input-id-01" placeholder="Placeholder text…" class="slds-input" />
+              </div>
+            </div>
+            <div class="slds-form-element slds-form-element_horizontal">
+              <label class="slds-form-element__label" for="horizontal-input-id-02"><abbr class="slds-required" title="required">* </abbr>Code</label>
+              <div class="slds-form-element__control">
+                <input type="text" readonly name="iso3" [(ngModel)]="_country.iso3" id="horizontal-input-id-02" placeholder="Placeholder text…" class="slds-input" />
+              </div>
+            </div>
+
+          </div>
+          <button (click)="SaveCountry()" class="slds-button slds-button_brand">Save</button>
+
+
+
+        </div>
+        <footer class="slds-card__footer">
+
+        </footer>
+      </article>
+      <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <h5 class="slds-text-heading_medium">
+              Create City
+            </h5>
+          </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+          <div class="slds-form">
+            <div class="slds-form-element slds-form-element_horizontal">
+              <label class="slds-form-element__label" for="horizontal-input-id-022"><abbr class="slds-required" title="required">* </abbr>Country</label>
+              <div class="slds-form-element__control">
+                <input (change)="countryChange($event)" list="incountries" type="text" name="countryname" [(ngModel)]="_city.country.name" id="horizontal-input-id-022" placeholder="Placeholder text…" class="slds-input" />
+              </div>
+            </div>
+            <div class="slds-form-element slds-form-element_horizontal">
+              <label class="slds-form-element__label" for="horizontal-input-id-02"><abbr class="slds-required" title="required">* </abbr>city name</label>
+              <div class="slds-form-element__control">
+                <input type="text" name="name" list="cities" [(ngModel)]="_city.name" id="horizontal-input-id-02" placeholder="Placeholder text…" class="slds-input" />
+              </div>
+            </div>
+
+          </div>
+          <button (click)="SaveCity()" class="slds-button slds-button_brand">Save</button>
+        </div>
+        <footer class="slds-card__footer">
+
+        </footer>
+      </article>
+    </span>
+  </div>
+
+
+
+</div>
+<datalist id="countries" >
+  <option *ngFor="let country of countries" [value]="country.name" [label]="country.iso3">
+</datalist>
+<datalist id="cities" >
+  <option *ngFor="let city of cities" [value]="city">
+</datalist>
+<datalist id="incountries" >
+  <option *ngFor="let country of incountries" [value]="country.name" [label]="country.name">
+</datalist>
