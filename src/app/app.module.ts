@@ -17,6 +17,12 @@ import { TransfertCreationComponent } from './transfert-creation/transfert-creat
 import { TransfertDetailsComponent } from './transfert-details/transfert-details.component';
 import { TransfertListComponent } from './transfert-list/transfert-list.component';
 import { TransfertCardComponent } from './transfert-card/transfert-card.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { TransactionDetailsComponent } from './transaction-details/transaction-details.component';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { VCardComponent } from './v-card/v-card.component';
+import { VSpinnerComponent } from './v-spinner/v-spinner.component';
+import { ApprovalDetailsComponent } from './approval-details/approval-details.component';
 
 enableProdMode();
 @NgModule({
@@ -32,7 +38,13 @@ enableProdMode();
     TransfertCreationComponent,
     TransfertDetailsComponent,
     TransfertListComponent,
-    TransfertCardComponent
+    TransfertCardComponent,
+    TransactionComponent,
+    TransactionDetailsComponent,
+    TransactionListComponent,
+    VCardComponent,
+    VSpinnerComponent,
+    ApprovalDetailsComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,

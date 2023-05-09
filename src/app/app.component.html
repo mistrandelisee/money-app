@@ -32,7 +32,7 @@
         </button>
       </div>
       <span class="slds-context-bar__label-action slds-context-bar__app-name">
-        <span class="slds-truncate" title="App Name">App Name</span>
+        <span class="slds-truncate" title="App Name">Money App</span>
       </span>
     </div>
   </div>
@@ -98,12 +98,26 @@
         </a>
       </li>
       <li class="slds-context-bar__item">
+        <a routerLink="/transaction" class="slds-context-bar__label-action" title="Menu Item">
+          <span class="slds-truncate" title="Menu Item">Transactions</span>
+        </a>
+      </li>
+      <li class="slds-context-bar__item">
         <a routerLink="/test" class="slds-context-bar__label-action" title="Menu Item">
           <span class="slds-truncate" title="Menu Item">test</span>
         </a>
       </li>
+      <li [class]="'slds-context-bar__item '+ ((user?.uid)?'slds-has-success':'slds-has-error') +' slds-context-bar__item_divider-left slds-has-notification' ">
+        <a  class="slds-context-bar__label-action" title="Menu Item">
+          <span class="slds-truncate" title="Menu Item">{{user?.email}}</span>
+        </a>
+      </li>
     </ul>
   </nav>
+</div>
+
+<div *ngIf="isloading">
+  <app-v-spinner></app-v-spinner>
 </div>
 
 

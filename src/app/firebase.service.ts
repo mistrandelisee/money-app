@@ -29,8 +29,11 @@ export class FirebaseService {
   public functionsInstance:any;
   public auth:any;
   public db:any;
+  public isloading:boolean;
   public transferts:any[]=[];
+  public transactions:any[]=[];
   constructor() {
+    this.isloading=false;
     const app = initializeApp(firebaseConfig);
     this.auth = getAuth(app);
 
@@ -49,6 +52,11 @@ export class FirebaseService {
     return signInWithEmailAndPassword(this.auth, form?.email , form?.password);
   }
   public  callFunction(function_name: string , data:any) : Promise<HttpsCallableResult<any>>{
-    return  httpsCallable(this.functionsInstance,function_name)(data);
+    console.log(`@@@@@@@@@@@@@@@@@@@@@ call function ${function_name} with data: ${data}`)
+    this.isloading=true;
+    return  httpsCallable(this.functionsInstance,function_name)(data).finally(() => {
+      console.log("@@@@@@@@@@@@@@@@@@@@@finished")
+      this.isloading=false;
+    });
   }
 }

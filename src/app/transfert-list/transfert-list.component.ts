@@ -7,9 +7,7 @@ import { FirebaseService } from '../firebase.service';
   styleUrls: ['./transfert-list.component.css']
 })
 export class TransfertListComponent implements OnInit {
-  constructor(public firebase:FirebaseService){
-
-  }
+  constructor(public firebase:FirebaseService){ }
   transferts:any[]=[]
   ngOnInit(): void {
     this.transferts=this.firebase.transferts
