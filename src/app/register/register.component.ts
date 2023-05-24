@@ -34,6 +34,9 @@ export class RegisterComponent {
       });
 
   }
+  get auth(){
+    return this.firebaseService?.auth?.currentUser
+  }
   public signIn(form: any) {
     console.log(form);
     if (form.register) {

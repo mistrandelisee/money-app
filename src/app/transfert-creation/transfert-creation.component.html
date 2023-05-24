@@ -128,10 +128,11 @@
   </div>
   <footer class="slds-card__footer">
     <button (click)="SaveTransfert()" class="slds-button slds-button_brand">Save</button>
+    <a class="slds-button" [routerLink]="'/transfert'"> back</a>
+
   </footer>
 
-
   <datalist id="cities" >
-    <option *ngFor="let city of cities" [value]="city.name">
+    <option *ngFor="let city of cities" [value]="city.name" [disabled]="true">
   </datalist>
 </article>
