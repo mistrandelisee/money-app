@@ -43,9 +43,9 @@ export class AdminCityComponent implements OnInit {
   }
   getIncountries() {
       const data={
-          "action":"GET"
+          "action":"GET-ALL"
         }
-      this.firebase.callFunction('manage_country',data).then(
+      this.firebase.callFunction('nl_manage_country',data).then(
         (resp:any)=>{
           console.log(resp);
           this.incountries=resp.data?.body;
@@ -65,7 +65,7 @@ export class AdminCityComponent implements OnInit {
             "code":this._country.iso3
           }
         }
-      this.firebase.callFunction('manage_country',data).then(
+      this.firebase.callFunction('nl_manage_country',data).then(
         data=>{
           console.log(data);
           this.getIncountries();
