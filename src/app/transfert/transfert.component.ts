@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./transfert.component.css']
 })
 export class TransfertComponent {
+  constructor(){
 
+  }
   mode='';
   get newmode():boolean {
       return this.mode=='new';

@@ -1,20 +1,22 @@
 <div class="slds-form" role="list">
-
-  <div class="slds-form__row">
+  <app-v-combobox [voptions]="countries" vlabel="Country" [vvalue]="country" (valuechange)="countryChanged($event)"
+  vlabelkey="name" vvaluekey="id" ></app-v-combobox>
+  <app-v-combobox [voptions]="cities" vlabel="City" [vvalue]="city" (valuechange)="cityChanged($event)"
+          vlabelkey="name" vvaluekey="id" ></app-v-combobox>
+  <!-- <div class="slds-form__row">
     <div class="slds-form__item" role="listitem">
       <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
         <label class="slds-form-element__label" for="single-form-element-id-02">Country</label>
         <div class="slds-form-element__control">
+
           <select  [(ngModel)]="country" (change)="countryChange($event)">
             <option *ngFor="let country of countries" [label]="country?.name" [value]="country?.id">
           </select>
-          <!-- <input type="text" data-key="country" (change)="countryChange($event)" [attr.list]="countrykey"
-            [(ngModel)]="country" id="single-form-element-id-02" placeholder="Placeholder text…" class="slds-input" /> -->
         </div>
       </div>
     </div>
-  </div>
-  <div class="slds-form__row">
+  </div> -->
+  <!-- <div class="slds-form__row">
     <div class="slds-form__item" role="listitem">
       <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
         <label class="slds-form-element__label" for="single-form-element-id-02">City</label>
@@ -22,12 +24,10 @@
           <select  [(ngModel)]="city" (change)="cityChange($event)" [disabled]="!country">
             <option *ngFor="let city of cities" [label]="city?.name" [value]="city?.id">
           </select>
-          <!-- <input type="text" data-key="city" (change)="cityChange($event)" [attr.list]="citykey" [(ngModel)]="city"
-            id="single-form-element-id-02" placeholder="Placeholder text…" class="slds-input" [disabled]="!country" /> -->
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>
 

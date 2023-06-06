@@ -12,7 +12,7 @@
     </header>
   </div>
   <div class="slds-card__body slds-card__body_inner">
-    <div class="slds-grid slds-wrap">
+    <div class="slds-grid slds-wrap" *ngIf="hastransferts">
       <div class="slds-col slds-size_3-of-12 slds-m-around_xx-small" *ngFor="let transfert of transferts">
         <app-transfert-card [transfert]="transfert"></app-transfert-card>
       </div>

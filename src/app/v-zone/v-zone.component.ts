@@ -39,6 +39,20 @@ export class VZoneComponent {
     return []
   }
 
+  public countryChanged(event: any): void {
+    console.log('countryChange:',event);
+    this.country=event.value
+    this.city=''
+    // event.preventDefault();
+    this.notify();
+  }
+  public cityChanged(event:any): void {
+    console.log('cityChange');
+    this.city=event.value
+    console.log(this.city);
+    // event.preventDefault();
+    this.notify();
+  }
   public countryChange(event: any): void {
     console.log('countryChange:',event.target.value);
     this.city=''

@@ -46,12 +46,27 @@
       </div>
 
 
-      <div class="slds-form__row">.
+
+      <div class="slds-form__row">
         <div class="slds-form__item" role="listitem">
-          <app-v-zone zoneKey="in" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
+          <fieldset class="slds-form-element slds-form-element_compound">
+            <legend class="slds-form-element__legend slds-form-element__label">From</legend>
+            <div class="slds-form-element__control">
+              <div class="slds-form-element__row">
+                <app-v-zone zoneKey="in" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
+              </div>
+            </div>
+          </fieldset>
         </div>
         <div class="slds-form__item" role="listitem">
-          <app-v-zone zoneKey="out" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
+          <fieldset class="slds-form-element slds-form-element_compound">
+            <legend class="slds-form-element__legend slds-form-element__label">From</legend>
+            <div class="slds-form-element__control">
+              <div class="slds-form-element__row">
+                <app-v-zone zoneKey="out" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
+              </div>
+            </div>
+          </fieldset>
         </div>
       </div>
 
@@ -112,6 +127,8 @@
           </div>
         </div>
       </div>
+
+
     </div>
       </div>
       <div class="slds-col slds-size_1-of-3">

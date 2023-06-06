@@ -25,6 +25,7 @@ import { VSpinnerComponent } from './v-spinner/v-spinner.component';
 import { ApprovalDetailsComponent } from './approval-details/approval-details.component';
 import { VZoneComponent } from './v-zone/v-zone.component';
 import { VToastComponent } from './v-toast/v-toast.component';
+import { VComboboxComponent } from './v-combobox/v-combobox.component';
 
 enableProdMode();
 @NgModule({
@@ -48,7 +49,8 @@ enableProdMode();
     VSpinnerComponent,
     ApprovalDetailsComponent,
     VZoneComponent,
-    VToastComponent
+    VToastComponent,
+    VComboboxComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,

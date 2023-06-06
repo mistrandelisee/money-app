@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
+import { ToastService } from '../toast.service';
 
 @Component({
   selector: 'app-transfert-list',
@@ -7,7 +8,9 @@ import { FirebaseService } from '../firebase.service';
   styleUrls: ['./transfert-list.component.css']
 })
 export class TransfertListComponent implements OnInit {
-  constructor(public firebase:FirebaseService){ }
+  constructor(public firebase:FirebaseService,public toastservice: ToastService){
+    this.firebase.transferts=[]
+  }
   transferts:any[]=[]
   ngOnInit(): void {
     this.transferts=this.firebase.transferts
@@ -19,17 +22,37 @@ export class TransfertListComponent implements OnInit {
     this.firebase.callFunction('nlManageRequest',data).then(
       (resp:any)=>{
         console.log(resp);
-        this.transferts=resp.data?.body;
-        this.firebase.transferts=this.transferts
+        const data=resp.data;
+        if (data.code!== '400') {
+          this.transferts=data.body;
+          this.firebase.transferts=this.transferts
+        }else{
+          this.showWarningToast(data?.body, data?.message)
+
+        }
+
       }
     )
     .catch((err:any)=>{
+      this.showErrorToast(err?.body, err?.message)
       console.error(err);
+      this.transferts=[]
     })
 
   }
-  /*public get transferts() : any[] {
-    return this.firebase.transferts || [];
-  }*/
+  public get hastransferts() : boolean {
+    return this.transferts?.length >0
+  }
+  showErrorToast(title:string,body:string){
+    this.toastservice.open('error',title,body)
+
+  }
+  showSuccessToast(title:string,body:string){
+    this.toastservice.open('success',title,body)
+
+  }
+  showWarningToast(title:string,body:string){
+    this.toastservice.open('warning',title,body)
+  }
 
 }
