@@ -16,7 +16,7 @@ export class TransfertListComponent implements OnInit {
     const data={
       "action":"GET"
     }
-    this.firebase.callFunction('manage_transfert',data).then(
+    this.firebase.callFunction('nlManageRequest',data).then(
       (resp:any)=>{
         console.log(resp);
         this.transferts=resp.data?.body;
