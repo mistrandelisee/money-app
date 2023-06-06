@@ -38,6 +38,8 @@ export class RegisterComponent {
     return this.firebaseService?.auth?.currentUser
   }
   public signIn(form: any) {
+    this.user={};
+    this.error={}
     console.log(form);
     if (form.register) {
       this.firebaseService.signIn(form)

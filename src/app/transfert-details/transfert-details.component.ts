@@ -3,7 +3,7 @@ import { Routes ,ActivatedRoute} from '@angular/router';
 
 import { map,tap } from 'rxjs/operators';
 import { FirebaseService } from '../firebase.service';
-
+import { transfert,TRANSFERT_FUNCTION } from 'src/forms/transfert';
 @Component({
   selector: 'app-transfert-details',
   templateUrl: './transfert-details.component.html',
@@ -20,10 +20,18 @@ export class TransfertDetailsComponent implements OnInit {
     return Object.entries(this.transfert?.owner|| {});
   }
   public  buildProps(prop:string) : any[] {
-    return Object.entries(this.transfert[prop]|| {});
+    try {
+      return Object.entries(this.transfert[prop]|| {});
+    } catch (error) {
+      return [];
+    }
+
   }
   public get transfProps() : any[] {
-    return Object.entries({...this.transfert,owner:'',bank:'',inZone:'',outZone:'',receiver:'',deposit:'',}|| {});
+    return Object.entries({...this.transfert,owner:'',bank:'',inZone:'',outZone:'',receiver:'',deposit:''
+    ,createdDate: (this.transfert?.createdDate)? JSON.stringify(this.transfert?.createdDate): null
+
+  }|| {});
   }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -37,17 +45,14 @@ export class TransfertDetailsComponent implements OnInit {
   }
   public getTransfert(){
     this.transfert= this.firebase.transferts.find(x=>x.id==this.id);
-    const data={
-      "action":"GET",
-      "search": {
-        id:this.id
-      }
-    }
-    this.firebase.callFunction('manage_transfert',data).then(
+
+    const data=transfert.buildGetInfo(this.id)
+    this.firebase.callFunction(TRANSFERT_FUNCTION,data).then(
       (resp:any)=>{
         console.log(resp);
-        if(resp.data?.body?.length > 0)
-          this.transfert= resp.data?.body[0]
+
+        if(resp.data?.body)
+          this.transfert= resp.data?.body
           else
           this.transfert={}
       }

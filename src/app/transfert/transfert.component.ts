@@ -20,4 +20,7 @@ export class TransfertComponent {
   public openNew(){
     this.mode='new';
   }
+  onBack():void {
+    this.mode='';
+  }
 }

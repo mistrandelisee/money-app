@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
+import { country,COUNTRY_FUNCTION } from 'src/forms/country';
+import { transfert , TRANSFERT_FUNCTION} from 'src/forms/transfert';
+import { ToastService } from '../toast.service';
 
 @Component({
   selector: 'app-transfert-creation',
@@ -8,100 +11,59 @@ import { FirebaseService } from '../firebase.service';
 })
 export class TransfertCreationComponent {
   public cities: any[]=[];
-  public _transfert:any={}
-
+  public _transfert:transfert=new transfert();
+  countries: any[]=[];
   public reset(){
-    this._transfert={
-      "status": "NEW",
-      "amount":5000,
-      "description":"test",
-      "amountMax":10000,
-      "amountMin":0,
-      "createdDate":"20-04-2023",
-      "LastTimeInPending":"20-04-2023",
-      "to_bank": true,// ["Bank","personnel"],
-      "bank":{
-        "number":"xxxxxx",
-        "name":"test Bank",
-        "title":"test test",
-        "typeId":"xxxxxxxx",
-      },
-      "receiver":{
-        "fullname":"test",
-        "numID":545455
-      },
-      "deposit":{
-        "contact":658778542,
-      },
-
-      "ownerId":"xxxxxxxxx",
-      "inZoneId":"xxxxxxxxx",
-      "outZoneId":"xxxxxxxxx",
-      "inZone":{
-        "id":"",
-        "name":"",
-        "code":"",
-        "country_id":"",
-        "country":{
-          "nom":"",
-          "code":"",
-          "currency":""
-        }
-      },
-      "outZone":{
-        "id":"",
-        "name":"",
-        "code":"",
-        "country_id":"",
-        "country":{
-          "nom":"",
-          "code":"",
-          "currency":""
-        }
-      },
-    }
+    this._transfert==new transfert();
   }
-  constructor(public firebase:FirebaseService){
+
+  constructor(public firebase:FirebaseService, public toastservice: ToastService){
 
   }
   ngOnInit(): void {
     this.reset()
-    this.cities=this.initCities()||[]
-    this.getIncities();
+    // this.countries=this.initCities()||[]
+    this.getCountries();
 
 
   }
   savelocal(id:string){
-    this._transfert.id=id
-    this.firebase.transferts.push(this._transfert)
+    // this._transfert.id=id
+    this.firebase.transferts.push({...this._transfert,id})
     this.reset()
   }
   public SaveTransfert(){
 
-    this._transfert.currency=this._transfert.inZone.country.currency;
-    this._transfert.inZoneId=this._transfert.inZone.country.id;
-    this._transfert.outZoneId=this._transfert.outZone.country.id;
+    // this._transfert.currency=this._transfert.inZone.country.currency;
+    // this._transfert.inZoneId=this._transfert.inZone.country.id;
+    // this._transfert.outZoneId=this._transfert.outZone.country.id;
 
-    this._transfert.createdDate= new Date().toJSON();
-    this._transfert.LastTimeInPending= new Date().toJSON();
-    console.log(this._transfert);
-    (this._transfert.to_bank)?
-      this._transfert.receiver=null: this._transfert.bank=null
-    const data={
-      "action":"SAVE",
-      "transfert":  this._transfert
-    }
+    // this._transfert.createdDate= new Date().toJSON();
+    // this._transfert.LastTimeInPending= new Date().toJSON();
+    // console.log(this._transfert);
+    // (this._transfert.to_bank)?
+    //   this._transfert.receiver=null: this._transfert.bank=null
+    const data=this._transfert.buildSaveRequest()
     console.log(data);
     let id=new Date().getTime()+'';
-    this.firebase.callFunction('manage_transfert',data).then(
+
+    // return ;
+
+
+    this.firebase.callFunction(TRANSFERT_FUNCTION,data).then(
       (result:any)=>{
         console.log(result);
         id=result.body;
         // this._transfert={};
+        const data:any=result.data;
+        if(data?.code=="400"){
+          this.showWarningToast(data?.body, data?.message)
+        }else this.showSuccessToast('Success',data?.body )
       }
     )
     .catch(err=>{
       console.error(err);
+      this.showErrorToast(err?.body, err?.message)
     })
     .finally(() => {
       this.savelocal(id);
@@ -109,29 +71,28 @@ export class TransfertCreationComponent {
     })
 
   }
+  getCountries() {
+    const data=country.buildGetCountriesRequest()
+    this.firebase.callFunction(COUNTRY_FUNCTION,data).then(
+      (resp:any)=>{
+        console.log('countries');
+        console.log(resp);
+        this.countries=resp.data?.body;
+      }
+    )
+    .catch((err:any)=>{
+      console.error(err);
+    })
+}
 
-  getIncities() {
-      const data={
-          "action":"GET"
-        }
-      this.firebase.callFunction('manage_city',data).then(
-        (resp:any)=>{
-          console.log(resp);
-          this.cities=resp.data?.body;
-        }
-      )
-      .catch((err:any)=>{
-        console.error(err);
-      })
-  }
-  public cityChange(event:any):void {
-    const city_name=event.target.value
-    const zonekey=event.target.dataset.key
-    console.log(zonekey);
-    const zone=this.cities.find(x=> x.name === city_name)||{}
-
-    this._transfert[zonekey]=zone;
-
+  public zoneChanged(event:any):void{
+    console.log(event)
+    if (event?.zoneKey=='in') {
+      this._transfert.inZoneCity=event.city
+    }
+    if (event?.zoneKey=='out') {
+      this._transfert.outZoneCity=event.city
+    }
   }
   initCities(){
     return [
@@ -191,4 +152,19 @@ export class TransfertCreationComponent {
     ]
   }
 
+  showErrorToast(title:string,body:string){
+    this.toastservice.open('error',title,body)
+
+  }
+  showSuccessToast(title:string,body:string){
+    this.toastservice.open('success',title,body)
+
+  }
+  showWarningToast(title:string,body:string){
+    this.toastservice.open('warning',title,body)
+  }
+  @Output() back: EventEmitter<any> = new EventEmitter();
+  goBack() {
+    this.back.emit();
+  }
 }

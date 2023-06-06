@@ -118,6 +118,11 @@
 <div *ngIf="isloading">
   <app-v-spinner></app-v-spinner>
 </div>
-
+<div *ngIf="showToast">
+  <app-v-toast
+    [title]="toast.title"
+    [variant]="toast.variant"
+    [body]="toast.body"></app-v-toast>
+</div>
 
 <router-outlet></router-outlet>

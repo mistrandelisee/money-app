@@ -16,7 +16,7 @@
       <div class="slds-col slds-size_2-of-3">
 
     <div class="slds-form" role="list">
-      <div class="slds-form__row">
+      <!-- <div class="slds-form__row">
         <div class="slds-form__item" role="listitem">
           <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
             <label class="slds-form-element__label" for="single-form-element-id-02">from</label>
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="slds-form__row">
         <div class="slds-form__item" role="listitem">
           <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
@@ -44,24 +44,17 @@
           </div>
         </div>
       </div>
-      <div class="slds-form__row">
+
+
+      <div class="slds-form__row">.
         <div class="slds-form__item" role="listitem">
-          <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
-            <label class="slds-form-element__label" for="single-form-element-id-02">Min</label>
-            <div class="slds-form-element__control">
-              <input type="number" [(ngModel)]="_transfert.amountMin" [max]="_transfert.amount"  id="single-form-element-id-02" placeholder="Placeholder text…" class="slds-input" />
-            </div>
-          </div>
+          <app-v-zone zoneKey="in" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
         </div>
         <div class="slds-form__item" role="listitem">
-          <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
-            <label class="slds-form-element__label" for="single-form-element-id-03">Max</label>
-            <div class="slds-form-element__control">
-              <input type="number" [(ngModel)]="_transfert.amountMax" [min]="_transfert.amount"  id="single-form-element-id-03" placeholder="Placeholder text…" class="slds-input" />
-            </div>
-          </div>
+          <app-v-zone zoneKey="out" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
         </div>
       </div>
+
       <div class="slds-form__row">
         <div class="slds-form__item" role="listitem">
           <div class="slds-form-element">
@@ -128,11 +121,8 @@
   </div>
   <footer class="slds-card__footer">
     <button (click)="SaveTransfert()" class="slds-button slds-button_brand">Save</button>
-    <a class="slds-button" [routerLink]="'/transfert'"> back</a>
+    <a class="slds-button" (click)="goBack()"> back</a>
 
   </footer>
 
-  <datalist id="cities" >
-    <option *ngFor="let city of cities" [value]="city.name" [disabled]="true">
-  </datalist>
 </article>

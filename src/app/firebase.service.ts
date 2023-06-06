@@ -56,7 +56,9 @@ export class FirebaseService {
     return signInWithEmailAndPassword(this.auth, form?.email , form?.password);
   }
   public  callFunction(function_name: string , data:any) : Promise<HttpsCallableResult<any>>{
-    console.log(`@@@@@@@@@@@@@@@@@@@@@ call function ${function_name} with data: ${data}`)
+    console.log(`@@@@@@@@@@@@@@@@@@@@@ call function ${function_name} with data:\n `)
+    console.log(data);
+
     this.isloading=true;
     return  httpsCallable(this.functionsInstance,function_name)(data).finally(() => {
       console.log("@@@@@@@@@@@@@@@@@@@@@finished")

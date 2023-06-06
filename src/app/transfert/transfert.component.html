@@ -25,7 +25,7 @@
     <ng-container *ngIf="newmode; else listview">
       <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-center">
         <div class="slds-col">
-          <app-transfert-creation></app-transfert-creation>
+          <app-transfert-creation (back)="onBack()"></app-transfert-creation>
         </div>
       </div>
 

@@ -3,6 +3,7 @@ import { FirebaseService } from './firebase.service';
 
 import { Routes ,ActivatedRoute} from '@angular/router';
 import { map,tap } from 'rxjs/operators';
+import { ToastService } from './toast.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,8 +12,7 @@ import { map,tap } from 'rxjs/operators';
 export class AppComponent {
   title = 'my app';
   open=false
-
-  constructor(public routes:ActivatedRoute,public firebase: FirebaseService){ }
+  constructor(public routes:ActivatedRoute,public firebase: FirebaseService, public toastservice: ToastService){ }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -39,6 +39,18 @@ export class AppComponent {
   }
   public get isloading(): boolean  {
     return this.firebase.isloading
+  }
+  public get showToast(): boolean  {
+    // console.log('showToast',this.toastservice.isopen);
+
+    return this.toastservice.isopen
+  }
+  public get toast(): any  {
+    return {
+      title : this.toastservice.title,
+      variant : this.toastservice.variant,
+      body : this.toastservice.body
+    }
   }
   toggle(){
     this.open=!this.open;

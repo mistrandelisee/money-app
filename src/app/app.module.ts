@@ -23,6 +23,8 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
 import { VCardComponent } from './v-card/v-card.component';
 import { VSpinnerComponent } from './v-spinner/v-spinner.component';
 import { ApprovalDetailsComponent } from './approval-details/approval-details.component';
+import { VZoneComponent } from './v-zone/v-zone.component';
+import { VToastComponent } from './v-toast/v-toast.component';
 
 enableProdMode();
 @NgModule({
@@ -44,7 +46,9 @@ enableProdMode();
     TransactionListComponent,
     VCardComponent,
     VSpinnerComponent,
-    ApprovalDetailsComponent
+    ApprovalDetailsComponent,
+    VZoneComponent,
+    VToastComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,
