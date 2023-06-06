@@ -38,18 +38,18 @@
   </div>
   <nav class="slds-context-bar__secondary" role="navigation">
     <ul class="slds-grid">
-      <li class="slds-context-bar__item slds-is-active">
+      <li class="slds-context-bar__item " routerLink="/home" routerLinkActive="slds-is-active">
         <a routerLink="/home" class="slds-context-bar__label-action" title="Home">
           <span class="slds-assistive-text">Current Page:</span>
           <span class="slds-truncate" title="Home">Home</span>
         </a>
       </li>
-      <li class="slds-context-bar__item">
-        <a routerLink="/sign" class="slds-context-bar__label-action" title="Menu Item">
+      <li class="slds-context-bar__item" routerLink="/sign" routerLinkActive="slds-is-active">
+        <a routerLink="/sign" routerLinkActive="active-link" class="slds-context-bar__label-action" title="Menu Item">
           <span class="slds-truncate" title="Menu Item">register</span>
         </a>
       </li>
-      <li [class]="'slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click '+(open ? 'slds-is-open' : '') ">
+      <li  [class]="'slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click '+(open ? 'slds-is-open' : '') ">
         <a  class="slds-context-bar__label-action" title="Menu Item" (click)="toggle()">
           <span class="slds-truncate" title="Menu Item">Administration</span>
         </a>
@@ -92,17 +92,17 @@
           </ul>
         </div>
       </li>
-      <li class="slds-context-bar__item">
+      <li class="slds-context-bar__item" routerLink="/transfert" routerLinkActive="slds-is-active">
         <a routerLink="/transfert" class="slds-context-bar__label-action" title="Menu Item">
           <span class="slds-truncate" title="Menu Item">transferts</span>
         </a>
       </li>
-      <li class="slds-context-bar__item">
+      <li class="slds-context-bar__item" routerLink="/transaction" routerLinkActive="slds-is-active">
         <a routerLink="/transaction" class="slds-context-bar__label-action" title="Menu Item">
           <span class="slds-truncate" title="Menu Item">Transactions</span>
         </a>
       </li>
-      <li class="slds-context-bar__item">
+      <li class="slds-context-bar__item" routerLink="/test" routerLinkActive="slds-is-active">
         <a routerLink="/test" class="slds-context-bar__label-action" title="Menu Item">
           <span class="slds-truncate" title="Menu Item">test</span>
         </a>
@@ -115,7 +115,6 @@
     </ul>
   </nav>
 </div>
-
 <div *ngIf="isloading">
   <app-v-spinner></app-v-spinner>
 </div>
