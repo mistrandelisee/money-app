@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged, UserCredential } from "firebase/auth";
-import { httpsCallable,getFunctions, HttpsCallableResult } from "firebase/functions";
+import { httpsCallable,getFunctions, HttpsCallableResult,connectFunctionsEmulator } from "firebase/functions";
+// import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
+
+
 const firebaseConfig = {
   projectId: "plexiform-being-384211",
   apiKey: "AIzaSyBdXT47g8fYnMPT9wCNL5h7sEHniN5yTd4",
@@ -40,6 +43,7 @@ export class FirebaseService {
     this.db = getFirestore(app);
 
     this.functionsInstance= getFunctions(app)
+    // connectFunctionsEmulator(this.functionsInstance, "localhost", 5001);
     console.log(this.functionsInstance);
   }
   public signIn(form: any): Promise<UserCredential> {
