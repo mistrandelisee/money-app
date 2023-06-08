@@ -26,6 +26,7 @@ import { ApprovalDetailsComponent } from './approval-details/approval-details.co
 import { VZoneComponent } from './v-zone/v-zone.component';
 import { VToastComponent } from './v-toast/v-toast.component';
 import { VComboboxComponent } from './v-combobox/v-combobox.component';
+import { VModalComponent } from './v-modal/v-modal.component';
 
 enableProdMode();
 @NgModule({
@@ -50,7 +51,8 @@ enableProdMode();
     ApprovalDetailsComponent,
     VZoneComponent,
     VToastComponent,
-    VComboboxComponent
+    VComboboxComponent,
+    VModalComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,

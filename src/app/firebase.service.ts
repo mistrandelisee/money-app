@@ -4,12 +4,16 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged, UserCredential } from "firebase/auth";
 import { httpsCallable,getFunctions, HttpsCallableResult,connectFunctionsEmulator } from "firebase/functions";
 // import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
-
+import { onMessage } from "firebase/messaging";
+import { getMessaging, onBackgroundMessage } from "firebase/messaging/sw";
 
 const firebaseConfig = {
-  projectId: "plexiform-being-384211",
   apiKey: "AIzaSyBdXT47g8fYnMPT9wCNL5h7sEHniN5yTd4",
   authDomain: "plexiform-being-384211.firebaseapp.com",
+  projectId: "plexiform-being-384211",
+  storageBucket: "plexiform-being-384211.appspot.com",
+  messagingSenderId: "824833644826",
+  appId: "1:824833644826:web:0335d1e70ccfcbf11974a3"
 };
 /*
 {
@@ -25,6 +29,7 @@ const firebaseConfig = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cfunctions-sav%40plexiform-being-384211.iam.gserviceaccount.com"
 }
 */
+const VAPID_KEY='BHz75Cb3bXUrCclCFNCrIlaLkvI8TX37MvM7aqT1w9k9pvbIi5Y0yrwULUM_yjoJz9FYXmmd1CleNvDwt9lIxk0'
 @Injectable({
   providedIn: 'root'
 })
@@ -32,19 +37,56 @@ export class FirebaseService {
   public functionsInstance:any;
   public auth:any;
   public db:any;
+  public app:any;
+  public messaging:any;
   public isloading:boolean;
   public transferts:any[]=[];
   public transactions:any[]=[];
   constructor() {
     this.isloading=false;
-    const app = initializeApp(firebaseConfig);
-    this.auth = getAuth(app);
+    this.app = initializeApp(firebaseConfig);
+    this.auth = getAuth(this.app);
 
-    this.db = getFirestore(app);
+    this.db = getFirestore(this.app);
 
-    this.functionsInstance= getFunctions(app)
+    this.functionsInstance= getFunctions(this.app)
     // connectFunctionsEmulator(this.functionsInstance, "localhost", 5001);
     console.log(this.functionsInstance);
+    this.messaging = getMessaging(this.app);
+    console.log(this.messaging);
+    this.getMessageToken()
+  }
+  getMessageToken():void{
+    onMessage(this.messaging, (payload) => {
+      console.log('Message received. ', payload);
+      // ...
+    });
+    onBackgroundMessage(this.messaging, (payload) => {
+      console.log('[firebase-messaging-sw.js] Received background message ', payload);
+      // Customize notification here
+      const notificationTitle = 'Background Message Title';
+      const notificationOptions = {
+        body: 'Background Message body.',
+        icon: '/firebase-logo.png'
+      };
+
+    });
+
+    // getToken(this.messaging, { vapidKey: VAPID_KEY }).then((currentToken) => {
+    //   if (currentToken) {
+    //     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@ currentToken>>> ', currentToken);
+
+    //     // Send the token to your server and update the UI if necessary
+    //     // ...
+    //   } else {
+    //     // Show permission request UI
+    //     console.log('No registration token available. Request permission to generate one.');
+    //     // ...
+    //   }
+    // }).catch((err) => {
+    //   console.log('An error occurred while retrieving token. ', err);
+    //   // ...
+    // });
   }
   public signIn(form: any): Promise<UserCredential> {
     return createUserWithEmailAndPassword(this.auth, form?.email , form?.password);

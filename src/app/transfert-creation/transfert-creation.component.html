@@ -53,17 +53,17 @@
             <legend class="slds-form-element__legend slds-form-element__label">From</legend>
             <div class="slds-form-element__control">
               <div class="slds-form-element__row">
-                <app-v-zone zoneKey="in" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
+                <app-v-zone zoneKey="in" [country]="request?.inZone?.country.id" [city]="request?.inZone?.id" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
               </div>
             </div>
           </fieldset>
         </div>
         <div class="slds-form__item" role="listitem">
           <fieldset class="slds-form-element slds-form-element_compound">
-            <legend class="slds-form-element__legend slds-form-element__label">From</legend>
+            <legend class="slds-form-element__legend slds-form-element__label">To</legend>
             <div class="slds-form-element__control">
               <div class="slds-form-element__row">
-                <app-v-zone zoneKey="out" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
+                <app-v-zone zoneKey="out" [country]="request?.outZone?.country.id" [city]="request?.outZone?.id" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
               </div>
             </div>
           </fieldset>

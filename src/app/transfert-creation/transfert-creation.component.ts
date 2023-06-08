@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { country,COUNTRY_FUNCTION } from 'src/forms/country';
 import { transfert , TRANSFERT_FUNCTION} from 'src/forms/transfert';
@@ -13,15 +13,32 @@ export class TransfertCreationComponent {
   public cities: any[]=[];
   public _transfert:transfert=new transfert();
   countries: any[]=[];
+  @Input()
+  request:any={}
+  @Input()
+  requestId=''
+  @Input()
+  isEdit=false;
   public reset(){
     this._transfert==new transfert();
   }
 
   constructor(public firebase:FirebaseService, public toastservice: ToastService){
 
+    console.log('constructor')
+    if (this.requestId) {
+      this._transfert.init( this.request);
+    }
+  }
+  buildFromRequest(request:any){
+
   }
   ngOnInit(): void {
+    console.log('ngOnInit')
     this.reset()
+    if (this.requestId) {
+      this._transfert.init( this.request);
+    }
     // this.countries=this.initCities()||[]
     this.getCountries();
 
@@ -43,7 +60,7 @@ export class TransfertCreationComponent {
     // console.log(this._transfert);
     // (this._transfert.to_bank)?
     //   this._transfert.receiver=null: this._transfert.bank=null
-    const data=this._transfert.buildSaveRequest()
+    const data=(this.isEdit) ?this._transfert.buildUpdateRequest(this.requestId) :this._transfert.buildSaveRequest()
     console.log(data);
     let id=new Date().getTime()+'';
 
@@ -58,7 +75,7 @@ export class TransfertCreationComponent {
         const data:any=result.data;
         if(data?.code=="400"){
           this.showWarningToast(data?.body, data?.message)
-        }else this.showSuccessToast('Success',data?.body )
+        }else this.showSuccessToast('Success',data?.message )
       }
     )
     .catch(err=>{
