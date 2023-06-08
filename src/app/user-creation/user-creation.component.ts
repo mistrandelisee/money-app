@@ -1,43 +1,50 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
-import { country,COUNTRY_FUNCTION } from 'src/forms/country';
-import { transfert , TRANSFERT_FUNCTION} from 'src/forms/transfert';
 import { ToastService } from '../toast.service';
+import { user , USER_FUNCTION} from 'src/forms/user';
+import { country,COUNTRY_FUNCTION } from 'src/forms/country';
+import { UserRole } from 'src/enum/user-role';
 
 @Component({
-  selector: 'app-transfert-creation',
-  templateUrl: './transfert-creation.component.html',
-  styleUrls: ['./transfert-creation.component.css']
+  selector: 'app-user-creation',
+  templateUrl: './user-creation.component.html',
+  styleUrls: ['./user-creation.component.css']
 })
-export class TransfertCreationComponent {
+export class UserCreationComponent {
   public cities: any[]=[];
-  public _transfert:transfert=new transfert();
+  public _user:user=new user();
   countries: any[]=[];
   @Input()
-  request:any={}
+  user:any={}
   @Input()
-  requestId=''
+  userId=''
+  @Input()
+  vrole=''
   @Input()
   isEdit=false;
   public reset(){
-    this._transfert==new transfert();
+    this._user==new user();
   }
 
   constructor(public firebase:FirebaseService, public toastservice: ToastService){
 
     console.log('constructor')
-    if (this.requestId) {
-      this._transfert.init( this.request);
+    if (this.userId) {
+      this._user.init( this.user);
     }
   }
-  buildFromRequest(request:any){
+  buildFromRequest(user:any){
 
   }
   ngOnInit(): void {
     console.log('ngOnInit')
     this.reset()
-    if (this.requestId) {
-      this._transfert.init( this.request);
+    if (this.userId) {
+      this._user.init( this.user);
+    }else{
+      this._user.role=<UserRole>this.vrole
+      this._user.firstname=(<string>this._user.role)?.toLocaleLowerCase()
+      this._user.email=(<string>this._user.role)?.toLocaleLowerCase()+'00@mail.com'
     }
     // this.countries=this.initCities()||[]
     this.getCountries();
@@ -45,30 +52,22 @@ export class TransfertCreationComponent {
 
   }
   savelocal(id:string){
-    // this._transfert.id=id
-    this.firebase.transferts.push({...this._transfert,id})
+    // this._user.id=id
+    this.firebase.transferts.push({...this._user,id})
     this.reset()
   }
-  public SaveTransfert(){
+  public doSave(){
 
-    // this._transfert.currency=this._transfert.inZone.country.currency;
-    // this._transfert.inZoneId=this._transfert.inZone.country.id;
-    // this._transfert.outZoneId=this._transfert.outZone.country.id;
-
-    // this._transfert.createdDate= new Date().toJSON();
-    // this._transfert.LastTimeInPending= new Date().toJSON();
-    // console.log(this._transfert);
-    // (this._transfert.to_bank)?
-    //   this._transfert.receiver=null: this._transfert.bank=null
-    const data=(this.isEdit) ?this._transfert.buildUpdateRequest(this.requestId) :this._transfert.buildSaveRequest()
+    const data=(this.isEdit) ?this._user.buildUpdateRequest(this.userId) :this._user.buildAdminCreateRequest()
     console.log(data);
     let id=new Date().getTime()+'';
 
     // return ;
 
-
-    this.firebase.callFunction(TRANSFERT_FUNCTION,data).then(
+    ///*
+    this.firebase.callFunction(USER_FUNCTION,data).then(
       (_data:any)=>{
+        console.log(_data);
         this.showSuccessToast('Success',_data?.message )
       }
     )
@@ -80,6 +79,7 @@ export class TransfertCreationComponent {
       this.savelocal(id);
 
     })
+    //*/
 
   }
   getCountries() {
@@ -92,17 +92,16 @@ export class TransfertCreationComponent {
       }
     )
     .catch((err:any)=>{
-      console.error(err);
+      //console.error(err);
     })
 }
 
   public zoneChanged(event:any):void{
     console.log(event)
-    if (event?.zoneKey=='in') {
-      this._transfert.inZoneCity=event.city
-    }
-    if (event?.zoneKey=='out') {
-      this._transfert.outZoneCity=event.city
+    if (event) {
+      const {country,city}=event;
+      this._user.country=country;
+      this._user.city=city;
     }
   }
   initCities(){

@@ -46,9 +46,9 @@ export class AdminCityComponent implements OnInit {
           "action":"GET-ALL"
         }
       this.firebase.callFunction('nl_manage_country',data).then(
-        (resp:any)=>{
-          console.log(resp);
-          this.incountries=resp.data?.body;
+        (data:any)=>{
+          console.log(data);
+          this.incountries=data?.body;
         }
       )
       .catch(err=>{

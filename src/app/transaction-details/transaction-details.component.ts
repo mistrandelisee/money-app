@@ -43,11 +43,11 @@ export class TransactionDetailsComponent implements OnInit {
       "code":  this.id
     }
     this.firebase.callFunction('manage_transaction',data).then(
-      (resp:any)=>{
-        console.log(resp);
-        if(!! resp.data?.body)
-          {this.transaction= resp.data?.body.transaction;
-          this.items= resp.data?.body.approvals}
+      (data:any)=>{
+        console.log(data);
+        if(!! data?.body)
+          {this.transaction= data?.body.transaction;
+          this.items= data?.body.approvals}
           else
           this.transaction={}
       }

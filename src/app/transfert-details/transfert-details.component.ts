@@ -70,11 +70,11 @@ export class TransfertDetailsComponent implements OnInit {
 
     const data=transfert.buildGetInfo(this.id)
     this.firebase.callFunction(TRANSFERT_FUNCTION,data).then(
-      (resp:any)=>{
-        console.log(resp);
+      (_data:any)=>{
+        console.log(_data);
 
-        if(resp.data?.body)
-          this.transfert= resp.data?.body
+        if(_data?.body)
+          this.transfert= _data?.body
           else
           this.transfert={}
       }
@@ -105,17 +105,14 @@ export class TransfertDetailsComponent implements OnInit {
 
 
     this.firebase.callFunction(TRANSFERT_FUNCTION,data).then(
-      (result:any)=>{
-        console.log(result);
-        const data:any=result.data;
-        if(data?.code=="400"){
-          this.showWarningToast(data?.body, data?.message)
-        }else this.showSuccessToast('Success',data?.message )
+      (_data:any)=>{
+        console.log(_data);
+        this.showSuccessToast('Success',_data?.message )
       }
     )
     .catch(err=>{
       console.error(err);
-      this.showErrorToast(err?.body, err?.message)
+      // this.showErrorToast(err?.body, err?.message)
     })
     .finally(() => {
       this.goto('/transfert')
@@ -133,16 +130,10 @@ export class TransfertDetailsComponent implements OnInit {
     this.action='BACK';
   }
 
-  showErrorToast(title:string,body:string){
-    this.toastservice.open('error',title,body)
 
-  }
   showSuccessToast(title:string,body:string){
     this.toastservice.open('success',title,body)
 
-  }
-  showWarningToast(title:string,body:string){
-    this.toastservice.open('warning',title,body)
   }
 
 

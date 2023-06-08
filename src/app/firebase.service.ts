@@ -6,6 +6,7 @@ import { httpsCallable,getFunctions, HttpsCallableResult,connectFunctionsEmulato
 // import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 import { onMessage } from "firebase/messaging";
 import { getMessaging, onBackgroundMessage } from "firebase/messaging/sw";
+import { ToastService } from './toast.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBdXT47g8fYnMPT9wCNL5h7sEHniN5yTd4",
@@ -42,7 +43,7 @@ export class FirebaseService {
   public isloading:boolean;
   public transferts:any[]=[];
   public transactions:any[]=[];
-  constructor() {
+  constructor(public toastservice: ToastService) {
     this.isloading=false;
     this.app = initializeApp(firebaseConfig);
     this.auth = getAuth(this.app);
@@ -54,7 +55,7 @@ export class FirebaseService {
     console.log(this.functionsInstance);
     this.messaging = getMessaging(this.app);
     console.log(this.messaging);
-    this.getMessageToken()
+    // this.getMessageToken()
   }
   getMessageToken():void{
     onMessage(this.messaging, (payload) => {
@@ -102,9 +103,38 @@ export class FirebaseService {
     console.log(data);
 
     this.isloading=true;
-    return  httpsCallable(this.functionsInstance,function_name)(data).finally(() => {
-      console.log("@@@@@@@@@@@@@@@@@@@@@finished")
-      this.isloading=false;
+    const self=this;
+    return new Promise<HttpsCallableResult<any>|any>(function(myResolve, myReject) {
+      httpsCallable(self.functionsInstance,function_name)(data)
+        .then((resp)=>{
+          console.log('log frommmmm');
+          console.log(resp);
+          const data:any=resp.data;
+          if(data?.code=="400"){
+            self.showWarningToast(data?.body, data?.message)
+          }
+          if(data?.code=='200')
+            myResolve(resp.data)
+        })
+        .catch((err)=>{
+          self.showErrorToast(err?.body, err?.message)
+          myReject(err);
+        })
+        .finally(() => {
+          console.log("@@@@@@@@@@@@@@@@@@@@@finished")
+          self.isloading=false;
+        });
     });
+  }
+  showErrorToast(title:string,body:string){
+    this.toastservice.open('error',title,body)
+
+  }
+  showSuccessToast(title:string,body:string){
+    this.toastservice.open('success',title,body)
+
+  }
+  showWarningToast(title:string,body:string){
+    this.toastservice.open('warning',title,body)
   }
 }

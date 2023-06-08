@@ -5,6 +5,7 @@ const UPDATE = "UPDATE";
 const DELETE = "DELETE";
 const OPEN = "OPEN";
 const GETINFO = "GET-INFO";
+const GETALL = "GET-ALL";
 export class transfert {
     amount: number=0;
     outZoneCity:string=''
@@ -31,6 +32,11 @@ export class transfert {
       const req=new baseRequest();
       req.action=DELETE;
       return {...req,transfertId:id,}
+    }
+    public static buildGetRequests(): any{
+      const req=new baseRequest();
+      req.action=GETALL;
+      return {...req}
     }
     public static buildGetInfo(transfertId:string){
       const req=new baseRequest();

@@ -1,0 +1,7 @@
+<ng-container *ngIf="hasId; then noTemplate; else noTemplate"></ng-container>
+<ng-template #noTemplate>
+  <app-user-info  [id]="id"></app-user-info>
+</ng-template>
+<ng-template #noTemplate>
+  <p>id not exist</p>
+</ng-template>

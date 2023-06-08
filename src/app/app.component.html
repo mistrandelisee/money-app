@@ -80,8 +80,8 @@
               </a>
             </li>
             <li class="slds-dropdown__item" role="presentation">
-              <a href="#" role="menuitem" tabindex="-1">
-                <span class="slds-truncate" title="Menu Item Two">Menu Item Two</span>
+              <a routerLink="/users" role="menuitem" (click)="toggle()" role="menuitem" tabindex="-1">
+                <span class="slds-truncate" title="Menu Item Two">Users</span>
               </a>
             </li>
             <li class="slds-dropdown__item" role="presentation">
@@ -107,7 +107,7 @@
           <span class="slds-truncate" title="Menu Item">test</span>
         </a>
       </li>
-      <li [class]="'slds-context-bar__item '+ ((user?.uid)?'slds-has-success':'slds-has-error') +' slds-context-bar__item_divider-left slds-has-notification' ">
+      <li routerLinkActive="slds-is-active" routerLink="/profile" [class]="'slds-context-bar__item '+ ((user?.uid)?'slds-has-success':'slds-has-error') +' slds-context-bar__item_divider-left slds-has-notification' ">
         <a  class="slds-context-bar__label-action" title="Menu Item">
           <span class="slds-truncate" title="Menu Item">{{user?.email}}</span>
         </a>

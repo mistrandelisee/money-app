@@ -32,9 +32,9 @@ export class TransactionListComponent implements OnInit {
       "action":"GET-LIST"
     }
     this.firebase.callFunction('manage_transaction',data).then(
-      (resp:any)=>{
-        console.log(resp);
-        this.transactions=resp.data?.body;
+      (data:any)=>{
+
+        this.transactions=data?.body;
         this.firebase.transactions=this.transactions
       }
     )

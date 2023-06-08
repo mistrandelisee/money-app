@@ -27,6 +27,12 @@ import { VZoneComponent } from './v-zone/v-zone.component';
 import { VToastComponent } from './v-toast/v-toast.component';
 import { VComboboxComponent } from './v-combobox/v-combobox.component';
 import { VModalComponent } from './v-modal/v-modal.component';
+import { UserCreationComponent } from './user-creation/user-creation.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { UsersComponent } from './users/users.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 enableProdMode();
 @NgModule({
@@ -52,7 +58,13 @@ enableProdMode();
     VZoneComponent,
     VToastComponent,
     VComboboxComponent,
-    VModalComponent
+    VModalComponent,
+    UserCreationComponent,
+    UserDetailsComponent,
+    UsersComponent,
+    UsersListComponent,
+    ProfileComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,
