@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { ToastService } from '../toast.service';
-import { TRANSFERT_FUNCTION, transfert } from 'src/forms/transfert';
+import { TRANSFERT_FUNCTION, transfert } from 'src/types/transfert';
 
 @Component({
   selector: 'app-transfert-list',

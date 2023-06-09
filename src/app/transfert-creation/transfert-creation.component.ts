@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
-import { country,COUNTRY_FUNCTION } from 'src/forms/country';
-import { transfert , TRANSFERT_FUNCTION} from 'src/forms/transfert';
+import { country,COUNTRY_FUNCTION } from 'src/types/country';
+import { transfert , TRANSFERT_FUNCTION} from 'src/types/transfert';
 import { ToastService } from '../toast.service';
 
 @Component({

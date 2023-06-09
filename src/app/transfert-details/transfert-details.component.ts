@@ -3,7 +3,7 @@ import { Router ,ActivatedRoute} from '@angular/router';
 
 import { map,tap } from 'rxjs/operators';
 import { FirebaseService } from '../firebase.service';
-import { transfert,TRANSFERT_FUNCTION } from 'src/forms/transfert';
+import { transfert,TRANSFERT_FUNCTION } from 'src/types/transfert';
 import { ToastService } from '../toast.service';
 const WORKING_STATE='WORKING';
 const REQUEST_STATES=[{

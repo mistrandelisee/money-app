@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { ToastService } from '../toast.service';
-import { user , USER_FUNCTION} from 'src/forms/user';
-import { country,COUNTRY_FUNCTION } from 'src/forms/country';
+import { user , USER_FUNCTION} from 'src/types/user';
+import { country,COUNTRY_FUNCTION } from 'src/types/country';
 import { UserRole } from 'src/enum/user-role';
 
 @Component({

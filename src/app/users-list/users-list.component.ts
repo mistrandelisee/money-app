@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
-import { user ,USER_FUNCTION} from 'src/forms/user';
+import { user ,USER_FUNCTION} from 'src/types/user';
 
 @Component({
   selector: 'app-users-list',

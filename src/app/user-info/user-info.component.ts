@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { ToastService } from '../toast.service';
-import { user , USER_FUNCTION} from 'src/forms/user';
+import { user , USER_FUNCTION} from 'src/types/user';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

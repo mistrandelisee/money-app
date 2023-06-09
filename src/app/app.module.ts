@@ -33,6 +33,8 @@ import { UsersComponent } from './users/users.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { VFormItemComponent } from './v-form-item/v-form-item.component';
+import { VFormComponent } from './v-form/v-form.component';
 
 enableProdMode();
 @NgModule({
@@ -64,7 +66,9 @@ enableProdMode();
     UsersComponent,
     UsersListComponent,
     ProfileComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    VFormItemComponent,
+    VFormComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,
