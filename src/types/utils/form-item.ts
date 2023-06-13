@@ -4,7 +4,7 @@ export class Iitem {
   name: string='';
   value?: string;
   type: supportedTypes=stypes.text;
-  required?: true;
+  required?: boolean;
   placeholder?: string;
   maxlength?: number;
   minlength?: number;
@@ -15,9 +15,12 @@ export class Iitem {
   md?: string;
   lg?: string;
   xl?: string;
+  errorMessage?:string;
   get sclass(){
     return`slds-col lds-size_1-of-1 slds-small-size_${this.xs || 4 }-of-12 slds-medium-size_${this.md || 4 }-of-12 slds-large-size_${this.lg || 4 }-of-12`
   }
+  get tojson() { return JSON.stringify(this)}
+  get _type() { return <string> this.type}
 }
  enum supportedTypes{
   text="text",

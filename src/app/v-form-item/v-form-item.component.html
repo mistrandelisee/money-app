@@ -1,3 +1,13 @@
-<div class="slds-col slds-size_10-of-12">
-  <span>{{vitem?.label}}</span>
+<div class={{iclass}}>
+  <label class="slds-form-element__label" for={{vitem.name}}>
+  <abbr class="slds-required" title="required" *ngIf="vitem.required">* </abbr>{{vitem.label}}</label>
+  <div class="slds-form-element__control">
+    <input #item type={{vitem.type}} [(ngModel)]="vitem.value" id={{vitem.name}} placeholder={{vitem.placeholder}}
+    class="slds-input" [value]="vitem.value" autocomplete="on" [required]="vitem.required || false"
+    >
+  </div>
+  <div class="slds-form-element__help" id="form-error-01" *ngIf="error">{{_errorText}}</div>
 </div>
+
+
+<!--  -->

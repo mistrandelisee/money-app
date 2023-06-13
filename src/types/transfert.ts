@@ -1,5 +1,5 @@
 import { baseRequest } from "./baseRequest"
-export  const TRANSFERT_FUNCTION ='nlManageRequest'
+export  const TRANSFERT_FUNCTION ='nl_manage_request'
 const SAVE = "SAVE";
 const UPDATE = "UPDATE";
 const DELETE = "DELETE";

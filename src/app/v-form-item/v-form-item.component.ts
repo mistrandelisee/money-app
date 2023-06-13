@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input,ViewChild, ElementRef, } from '@angular/core';
 import { Iitem } from 'src/types/utils/form-item';
 
 @Component({
@@ -7,9 +7,53 @@ import { Iitem } from 'src/types/utils/form-item';
   styleUrls: ['./v-form-item.component.css']
 })
 export class VFormItemComponent {
+  @ViewChild('item') itemCmp?:ElementRef;
   @Input()
-  vitem?: Iitem;
+  vitem:Iitem=new Iitem();
+  // error=false;
+  errorText='';
+  get iclass(){
+    const cx:any={};
+     cx.base= 'slds-form-element';
+    (this.error)? cx.error='slds-has-error' : cx.error=''
 
+    return Object.values(cx)?.join(' ');
+  }
+  constructor() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    // this._vitem=Object.assign(Iitem,JSON.parse(this.vitem));
+    setTimeout(() => {
+      // this.error=true;
+      this.errorText='mock error';
+    }, 5000);
+  }
+  _saveClicked=false;
+  get error() {
+    const err1=!this.itemCmp?.nativeElement.validity.valid;
+    const err2=this._saveClicked;
+    // console.log(err2 && err1);
+
+    return err2 && err1
+  }
+  get _errorText(){
+    return this.vitem?.errorMessage || this.itemCmp?.nativeElement.validationMessage;
+  }
+  public save():any{
+    this._saveClicked=true;
+    return this._save();
+  }
+  public _save():any{
+    console.log('in save')
+    const item:any={}
+    item[this.vitem.name]=this.itemCmp?.nativeElement.value
+    return {isvalid:this.validate(), item};
+  }
+  public validate( ):boolean{
+    console.log('in validate')
+    this.itemCmp?.nativeElement.checkValidity();
+    return this.itemCmp?.nativeElement.validity.valid;
+  }
 
 
 }

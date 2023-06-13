@@ -53,8 +53,8 @@ export class FirebaseService {
     this.functionsInstance= getFunctions(this.app)
     // connectFunctionsEmulator(this.functionsInstance, "localhost", 5001);
     console.log(this.functionsInstance);
-    this.messaging = getMessaging(this.app);
-    console.log(this.messaging);
+    // this.messaging = getMessaging(this.app);
+    // console.log(this.messaging);
     // this.getMessageToken()
   }
   getMessageToken():void{
