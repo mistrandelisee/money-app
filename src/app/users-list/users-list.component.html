@@ -12,10 +12,14 @@
     </header>
   </div>
   <div class="slds-card__body slds-card__body_inner">
-    <div class="slds-grid slds-wrap">
+    <!-- <div class="slds-grid slds-wrap">
       <div class="slds-col slds-size_4-of-12 slds-m-around_xx-small" *ngFor="let user of users">
         <app-v-card [fields]="fields" [info]="user" [title]="user.firstname || user.lastname || user.email"  [keyField]="user.id" [routerLink]="'/users/'+user.id"></app-v-card>
       </div>
+    </div> -->
+    <div *ngIf="hasusers">
+      <app-v-datatable [vcolumns]="columns" [vdata]="_users" (rowClicked)="onCkiclicked($event)"></app-v-datatable>
+
     </div>
   </div>
 </article>

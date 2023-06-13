@@ -12,70 +12,26 @@
     </header>
   </div>
   <div class="slds-card__body slds-card__body_inner">
+    <app-v-form [vfields]="vfields" #formUser></app-v-form>
     <div class="slds-grid slds-gutters">
+
       <div class="slds-col slds-size_2-of-3">
 
-    <div class="slds-form" role="list">
-      <div class="slds-form__row ">
-        <div class="slds-form__item" role="listitem">
-          <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
-            <label class="slds-form-element__label" for="single-form-element-id-023">First name</label>
-            <div class="slds-form-element__control">
-              <input type="text" [(ngModel)]="_user.firstname" type="text" id="single-form-element-id-02" placeholder="Placeholder text…" class="slds-input" />
+        <div class="slds-form" role="list">
+          <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem">
+              <fieldset class="slds-form-element slds-form-element_compound">
+                <legend class="slds-form-element__legend slds-form-element__label">Location</legend>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__row">
+                    <app-v-zone zoneKey="in" [country]="_user.country" [city]="_user.city" [allCountries]="countries"
+                      (valuechange)="zoneChanged($event)"></app-v-zone>
+                  </div>
+                </div>
+              </fieldset>
             </div>
           </div>
         </div>
-        <div class="slds-form__item" role="listitem">
-          <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
-            <label class="slds-form-element__label" for="single-form-element-id-023">Last name</label>
-            <div class="slds-form-element__control">
-              <input type="text" [(ngModel)]="_user.lastname" type="text" id="single-form-element-id-02" placeholder="Placeholder text…" class="slds-input" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slds-form__row ">
-        <div class="slds-form__item" role="listitem">
-          <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
-            <label class="slds-form-element__label" for="single-form-element-id-023">Email</label>
-            <div class="slds-form-element__control">
-              <input type="text" [(ngModel)]="_user.email" type="email" id="single-form-element-id-02" placeholder="Placeholder text…" class="slds-input" />
-            </div>
-          </div>
-        </div>
-        <div class="slds-form__item" role="listitem">
-          <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
-            <label class="slds-form-element__label" for="single-form-element-id-023">Phone Number</label>
-            <div class="slds-form-element__control">
-              <input type="text" [(ngModel)]="_user.phone" type="phone" id="single-form-element-id-02" placeholder="Placeholder text…" class="slds-input" />
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-
-      <div class="slds-form__row">
-        <div class="slds-form__item" role="listitem">
-          <fieldset class="slds-form-element slds-form-element_compound">
-            <legend class="slds-form-element__legend slds-form-element__label">Location</legend>
-            <div class="slds-form-element__control">
-              <div class="slds-form-element__row">
-                <app-v-zone zoneKey="in" [country]="_user.country" [city]="_user.city" [allCountries]="countries" (valuechange)="zoneChanged($event)"></app-v-zone>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </div>
-
-
-
-
-
-
-
-    </div>
       </div>
       <div class="slds-col slds-size_1-of-3">
         {{_user|json}}

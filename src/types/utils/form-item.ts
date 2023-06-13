@@ -21,6 +21,12 @@ export class Iitem {
   }
   get tojson() { return JSON.stringify(this)}
   get _type() { return <string> this.type}
+  // get _isCheckbox() { return  this.type== supportedTypes.checkbox}
+
+  get isBase(){
+    return this.type== stypes.email ||
+           this.type== stypes.text  ;
+  }
 }
  enum supportedTypes{
   text="text",
@@ -28,7 +34,8 @@ export class Iitem {
   email="email",
   url="url",
   tel="tel",
-  custom="custom",
-  number="number"
+  // custom="custom",
+  number="number",
+  // checkbox="checkbox"
 }
 export const stypes=supportedTypes

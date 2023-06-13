@@ -13,6 +13,7 @@ export class UsersComponent {
   }
   srole=''
   constructor(){
+    // this.mock()
   }
   mode='';
   get newmode():boolean {
@@ -30,5 +31,9 @@ export class UsersComponent {
   }
   onBack():void {
     this.mode='';
+  }
+  mock(){
+    this.srole = <string> this.role.agent;
+    this.mode='new';
   }
 }

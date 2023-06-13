@@ -107,21 +107,21 @@ export class FirebaseService {
     return new Promise<HttpsCallableResult<any>|any>(function(myResolve, myReject) {
       httpsCallable(self.functionsInstance,function_name)(data)
         .then((resp)=>{
-          console.log('log frommmmm');
           console.log(resp);
           const data:any=resp.data;
-          if(data?.code=="400"){
-            self.showWarningToast(data?.body, data?.message)
+          if(data?.exit=="KO"){
+            self.showWarningToast(data?.code, data?.message)
+          }else{
+            // if(data?.code=='200')
+              myResolve(resp.data)
           }
-          if(data?.code=='200')
-            myResolve(resp.data)
+
         })
         .catch((err)=>{
-          self.showErrorToast(err?.body, err?.message)
+          self.showErrorToast(err?.code, err?.message)
           myReject(err);
         })
         .finally(() => {
-          console.log("@@@@@@@@@@@@@@@@@@@@@finished")
           self.isloading=false;
         });
     });

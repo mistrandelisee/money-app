@@ -20,7 +20,7 @@ export class VFormComponent implements AfterViewInit {
   trackItem(index: number, item: Iitem) {
     return item.name;
   }
-  vfields: any[] = [
+  @Input()vfields: any[] = [
     {
       label: 'label',
       name: 'elt1',
@@ -61,18 +61,29 @@ export class VFormComponent implements AfterViewInit {
     console.log('ngAfterViewInit');
 
   }
-  save() {
-    const result:any={isvalid:true}
+  save() :result{
+    console.log('save');
+    const _result:any={isvalid:true}
     this.itemsCmp.forEach(element => {
       const {isvalid, item}=element.save();
-      result.isvalid= result.isvalid && isvalid
-      result.body= {...result.body,...item}
+      _result.isvalid= _result.isvalid && isvalid
+      _result.body= {..._result.body,...item}
 
     });
-    console.log(result);
-    return result;
+    const {isvalid, body}=_result;
+    return new result(isvalid, body);
   }
   public doSubmit():void{
      this.save();
   }
 }
+export class result{
+  isvalid=true
+  body:any={}
+
+  constructor(isvalid:boolean,body:any){
+      this.isvalid=isvalid
+      this.body=body
+  }
+}
+

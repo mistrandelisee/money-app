@@ -1,0 +1,10 @@
+
+<ng-container *ngIf="isbutton; else elseTemplate">
+  <div class="slds-truncate" [title]="value" (click)="onCkiclicked()">
+    <a  tabindex="-1">{{value}}</a>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="slds-truncate" [title]="value">{{value}}</div>
+</ng-template>
+

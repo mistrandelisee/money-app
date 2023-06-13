@@ -1,0 +1,20 @@
+<table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+  aria-label="Example table of Opportunities with vertical borders">
+  <thead>
+    <tr class="slds-line-height_reset">
+      <th class="slds-is-resizable slds-is-sortable slds-is-sorted slds-is-sorted_asc slds-cell_action-mode" scope="col" *ngFor="let col of _columns">
+        <app-v-datatable-header  [vcol]="col" (sort)="onSorted($event)"></app-v-datatable-header>
+      </th>
+    </tr>
+
+  </thead>
+  <tbody>
+    <tr class="slds-hint-parent" *ngFor="let row of _vdata">
+      <td data-label="Account Name" *ngFor="let col of _columns">
+        <app-v-datatable-row  [vcol]="col" [vrow]="row" (rowClicked)="onCkiclicked($event)"></app-v-datatable-row>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+

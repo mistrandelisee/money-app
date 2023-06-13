@@ -35,6 +35,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { VFormItemComponent } from './v-form-item/v-form-item.component';
 import { VFormComponent } from './v-form/v-form.component';
+import { VDatatableComponent } from './v-datatable/v-datatable.component';
+import { VDatatableHeaderComponent } from './v-datatable-header/v-datatable-header.component';
+import { VDatatableRowComponent } from './v-datatable-row/v-datatable-row.component';
 
 enableProdMode();
 @NgModule({
@@ -68,7 +71,10 @@ enableProdMode();
     ProfileComponent,
     UserInfoComponent,
     VFormItemComponent,
-    VFormComponent
+    VFormComponent,
+    VDatatableComponent,
+    VDatatableHeaderComponent,
+    VDatatableRowComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,

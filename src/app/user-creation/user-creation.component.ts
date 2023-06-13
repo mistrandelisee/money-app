@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output,ViewChild } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { ToastService } from '../toast.service';
 import { user , USER_FUNCTION} from 'src/types/user';
 import { country,COUNTRY_FUNCTION } from 'src/types/country';
 import { UserRole } from 'src/enum/user-role';
+import { stypes } from 'src/types/utils/form-item';
+import { VFormComponent, result } from '../v-form/v-form.component';
 
 @Component({
   selector: 'app-user-creation',
@@ -13,6 +15,7 @@ import { UserRole } from 'src/enum/user-role';
 export class UserCreationComponent {
   public cities: any[]=[];
   public _user:user=new user();
+  @ViewChild('formUser') formUserCmp!: VFormComponent;
   countries: any[]=[];
   @Input()
   user:any={}
@@ -47,6 +50,7 @@ export class UserCreationComponent {
       this._user.email=(<string>this._user.role)?.toLocaleLowerCase()+'00@mail.com'
     }
     // this.countries=this.initCities()||[]
+    this.buildForm()
     this.getCountries();
 
 
@@ -56,7 +60,31 @@ export class UserCreationComponent {
     this.firebase.transferts.push({...this._user,id})
     this.reset()
   }
+  saveForm(){
+    // const _result:result= Object.assign(new result(false,{}), {...this.formUserCmp?.save()});
+    const {isvalid,body}=this.formUserCmp?.save()
+    if(isvalid){
+      const _user={...this._user,...body}
+
+      console.log(_user);
+      this._user=Object.assign(new user(), _user);
+
+      console.log(this._user);
+
+    }
+    return isvalid && this.checkCountry();
+
+  }
+  checkCountry(){
+    return this._user.country && this._user.city
+  }
   public doSave(){
+    const proceed=this.saveForm()
+    if(proceed){
+      this._doSave()
+    }
+  }
+  public _doSave(){
 
     const data=(this.isEdit) ?this._user.buildUpdateRequest(this.userId) :this._user.buildAdminCreateRequest()
     console.log(data);
@@ -161,7 +189,34 @@ export class UserCreationComponent {
 
     ]
   }
-
+  vfields: any[] = []
+  buildForm(){
+    this.vfields = [
+      { label: 'First name', name: 'firstname',
+        value: this._user?.firstname, type: stypes.text,
+        required: true, placeholder: 'type…',
+        xs: '3', sm: '3', md: '8', lg: '3', xl: '3',
+        // maxlength: 100, minlength: 10,
+        // disabled: false,
+        // readonly: false,
+      },
+      { label: 'Last name', name: 'lastname',
+        value: this._user?.lastname, type: stypes.text,
+        required: true, placeholder: 'type…',
+        xs: '3', sm: '3', md: '8', lg: '3', xl: '3',
+      },
+      { label: 'Email', name: 'email',
+        value: this._user?.email, type: stypes.email,
+        required: true, placeholder: 'type…',
+        xs: '3', sm: '3', md: '8', lg: '3', xl: '3',
+      },
+      { label: 'Phone', name: 'phone',
+        value: this._user?.phone, type: stypes.tel,
+        required: true, placeholder: 'type…',
+        xs: '3', sm: '3', md: '8', lg: '3', xl: '3',
+      },
+    ];
+  }
   showErrorToast(title:string,body:string){
     this.toastservice.open('error',title,body)
 

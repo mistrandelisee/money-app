@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { user ,USER_FUNCTION} from 'src/types/user';
+import { stypes } from 'src/types/utils/datatable';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -8,7 +10,7 @@ import { user ,USER_FUNCTION} from 'src/types/user';
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent {
-  constructor(public firebase:FirebaseService){
+  constructor(public firebase:FirebaseService, private router:Router){
     //this.firebase.users=[]
   }
   users:any[]=[]
@@ -27,6 +29,30 @@ export class UsersListComponent {
       key:'status',
     },
   ]
+  columns:any=[
+    {
+      label:'name', fieldName:'name',
+      type:stypes.button
+    },
+    {
+      label:'gender', fieldName:'gender',
+    },
+    {
+      label:'email', fieldName:'email',
+    },
+    {
+      label:'role', fieldName:'role',sortable:true
+    },
+    {
+      label:'status', fieldName:'status',
+    },
+  ]
+  get _users():any[]{
+    return this.users?.map(function(_user){
+      return {..._user,
+        name: _user.firstname || _user.lastname || _user.email}
+    });
+  }
   ngOnInit(): void {
     //this.users=this.firebase.users
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -49,7 +75,13 @@ export class UsersListComponent {
     })
 
   }
-  public get hastransferts() : boolean {
+  public get hasusers() : boolean {
     return this.users?.length >0
+  }
+  onCkiclicked(row:any){
+    this.goto('/users/'+row.id)
+  }
+  goto(pathname:string){
+    this.router.navigateByUrl(pathname)
   }
 }
