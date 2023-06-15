@@ -39,6 +39,13 @@ import { VDatatableComponent } from './v-datatable/v-datatable.component';
 import { VDatatableHeaderComponent } from './v-datatable-header/v-datatable-header.component';
 import { VDatatableRowComponent } from './v-datatable-row/v-datatable-row.component';
 import { UsersListViewComponent } from './users-list-view/users-list-view.component';
+import { VOutputFieldsComponent } from './v-output-fields/v-output-fields.component';
+import { VOutputFieldComponent } from './v-output-field/v-output-field.component';
+import { CountryCreationComponent } from './country-creation/country-creation.component';
+import { CityCreationComponent } from './city-creation/city-creation.component';
+import { CountryListComponent } from './country-list/country-list.component';
+import { CityListComponent } from './city-list/city-list.component';
+import { AdminZoneComponent } from './admin-zone/admin-zone.component';
 
 enableProdMode();
 @NgModule({
@@ -77,6 +84,13 @@ enableProdMode();
     VDatatableHeaderComponent,
     VDatatableRowComponent,
     UsersListViewComponent
+    VOutputFieldsComponent,
+    VOutputFieldComponent,
+    CountryCreationComponent,
+    CityCreationComponent,
+    CountryListComponent,
+    CityListComponent,
+    AdminZoneComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,

@@ -1,0 +1,20 @@
+<div class="slds-tabs_default">
+  <ul class="slds-tabs_default__nav" role="tablist">
+    <li [class]="'slds-tabs_default__item '+((activeTabId=='country')?'slds-is-active':'')" title="Country" (click)="activeTabId='country'" role="presentation">
+      <a class="slds-tabs_default__link"  role="tab" tabindex="0" aria-selected="true"
+        aria-controls="tab-country" id="tab-country__item">Country</a>
+    </li>
+    <li [class]="'slds-tabs_default__item '+((activeTabId=='city')?'slds-is-active':'')" title="City" (click)="activeTabId='city'" role="presentation">
+      <a class="slds-tabs_default__link" role="tab" tabindex="-1" aria-selected="false"
+        aria-controls="tab-city" id="tab-city__item">City</a>
+    </li>
+  </ul>
+  <div id="tab-country" [class]="'slds-tabs_default__content '+((activeTabId=='country')?'slds-show':'slds-hide')" class="slds-tabs_default__content slds-show" role="tabpanel"
+    aria-labelledby="tab-country__item">
+    <app-country-list></app-country-list>
+  </div>
+  <div id="tab-city" [class]="'slds-tabs_default__content '+((activeTabId=='city')?'slds-show':'slds-hide')" role="tabpanel"
+    aria-labelledby="tab-city__item">
+    <app-city-list></app-city-list>
+  </div>
+</div>

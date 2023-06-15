@@ -22,54 +22,19 @@
     </div>
     <div class="slds-card__body slds-card__body_inner">
       <div class="slds-form" role="list">
+
         <p class="slds-text-align_right slds-text-color_destructive slds-border_bottom"> transfert  Informantions</p>
-        <div class="slds-grid slds-wrap">
-            <div class="slds-col slds-size_1-of-3 slds-p-bottom_medium" *ngFor="let item of transfProps" >
+        <app-v-output-fields [vfields]="transfertFields" [record]="transfert"></app-v-output-fields>
 
-                <div class="slds-form-element slds-form-element_readonly"   >
-                  <label class="slds-form-element__label slds-text-heading_small " for="single-form-element-id-02">{{item[0]}}</label>
+        <p class="slds-text-align_right slds-text-color_destructive slds-border_bottom"> inZone Informantions</p>
+        <app-v-output-fields [vfields]="zoneFields" [record]="transfert?.inZone"></app-v-output-fields>
 
-                  <div class="slds-form-element__control ">
-                    <div class="slds-form-element__static slds-text-color_success">
-                      <span>{{item[1]}}</span>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
+        <p class="slds-text-align_right slds-text-color_destructive slds-border_bottom"> outZone Informantions</p>
+        <app-v-output-fields [vfields]="zoneFields" [record]="transfert?.outZone"></app-v-output-fields>
+
         <p class="slds-text-align_right slds-text-color_destructive slds-border_bottom"> bank Informantions</p>
         <div class="slds-grid slds-wrap">
           <div class="slds-col slds-size_1-of-3 slds-p-bottom_medium" *ngFor="let item of buildProps('bank')" >
-
-              <div class="slds-form-element slds-form-element_readonly"   >
-                <label class="slds-form-element__label slds-text-heading_small " for="single-form-element-id-02">{{item[0]}}</label>
-
-                <div class="slds-form-element__control ">
-                  <div class="slds-form-element__static slds-text-color_success">
-                    <span>{{item[1]}}</span>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-        <p class="slds-text-align_right slds-text-color_destructive slds-border_bottom"> inZone Informantions</p>
-        <div class="slds-grid slds-wrap">
-          <div class="slds-col slds-size_1-of-3 slds-p-bottom_medium" *ngFor="let item of buildProps('inZone')" >
-
-              <div class="slds-form-element slds-form-element_readonly"   >
-                <label class="slds-form-element__label slds-text-heading_small " for="single-form-element-id-02">{{item[0]}}</label>
-
-                <div class="slds-form-element__control ">
-                  <div class="slds-form-element__static slds-text-color_success">
-                    <span>{{item[1]}}</span>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-        <p class="slds-text-align_right slds-text-color_destructive slds-border_bottom"> outZone Informantions</p>
-        <div class="slds-grid slds-wrap">
-          <div class="slds-col slds-size_1-of-3 slds-p-bottom_medium" *ngFor="let item of buildProps('outZone')" >
 
               <div class="slds-form-element slds-form-element_readonly"   >
                 <label class="slds-form-element__label slds-text-heading_small " for="single-form-element-id-02">{{item[0]}}</label>
@@ -112,21 +77,10 @@
               </div>
           </div>
         </div>
+
         <p class="slds-text-align_right slds-text-color_destructive slds-border_bottom"> owner Informantions</p>
-        <div class="slds-grid slds-wrap">
-          <div class="slds-col slds-size_1-of-3 slds-p-bottom_medium" *ngFor="let item of buildProps('owner')" >
+        <app-v-output-fields [vfields]="userFields" [record]="transfert?.owner"></app-v-output-fields>
 
-              <div class="slds-form-element slds-form-element_readonly"   >
-                <label class="slds-form-element__label slds-text-heading_small " for="single-form-element-id-02">{{item[0]}}</label>
-
-                <div class="slds-form-element__control ">
-                  <div class="slds-form-element__static slds-text-color_success">
-                    <span>{{item[1]}}</span>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
 
 
       </div>

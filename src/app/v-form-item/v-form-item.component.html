@@ -1,13 +1,28 @@
 <div class={{iclass}}>
   <label class="slds-form-element__label" for={{vitem.name}}>
-  <abbr class="slds-required" title="required" *ngIf="vitem.required">* </abbr>{{vitem.label}}</label>
-  <div class="slds-form-element__control">
-    <input #item type={{vitem.type}} [(ngModel)]="vitem.value" id={{vitem.name}} placeholder={{vitem.placeholder}}
-    class="slds-input" [value]="vitem.value" autocomplete="on" [required]="vitem.required || false"
-    >
+    <abbr class="slds-required" title="required" *ngIf="vitem.required">* </abbr>{{vitem.label}}</label>
+    <div class="slds-form-element__control">
+
+    <ng-container *ngIf="vitem.isDatalist; else elseTemplate">
+
+      <input #item type="text" [attr.list]="vitem.listName" [(ngModel)]="vitem.value" id={{vitem.name}} placeholder={{vitem.placeholder}}
+        class="slds-input" [value]="vitem.value" autocomplete="on" [required]="vitem.required || false"  (change)="doChange($event)">
+      <datalist [id]="vitem.listName" >
+        <option *ngFor="let element of vitem.options" [value]="element[vitem?.optionsconfig?.value]" [label]="element[vitem?.optionsconfig?.label]">
+      </datalist>
+
+    </ng-container>
+    <ng-template #elseTemplate>
+
+        <input #item type={{vitem.type}} [(ngModel)]="vitem.value" id={{vitem.name}} placeholder={{vitem.placeholder}}
+        class="slds-input" [value]="vitem.value" autocomplete="on" [required]="vitem.required || false" (change)="doChange($event)">
+    </ng-template>
+
   </div>
   <div class="slds-form-element__help" id="form-error-01" *ngIf="error">{{_errorText}}</div>
 </div>
+
+
 
 
 

@@ -64,7 +64,7 @@
         <div class="slds-dropdown slds-dropdown_right">
           <ul class="slds-dropdown__list" role="menu">
             <li class="slds-dropdown__item" role="presentation">
-              <a href="#" role="menuitem" tabindex="-1">
+              <a role="menuitem" tabindex="-1">
                 <span class="slds-truncate" title="Main action">
                   <svg class="slds-icon slds-icon_x-small slds-icon-text-default slds-m-right_x-small" aria-hidden="true">
                     <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
@@ -85,8 +85,8 @@
               </a>
             </li>
             <li class="slds-dropdown__item" role="presentation">
-              <a href="#" role="menuitem" tabindex="-1">
-                <span class="slds-truncate" title="Menu Item Three">Menu Item Three</span>
+              <a routerLink="/zone" role="menuitem" (click)="toggle()" tabindex="-1">
+                <span class="slds-truncate" title="Menu Item One">Zone</span>
               </a>
             </li>
           </ul>

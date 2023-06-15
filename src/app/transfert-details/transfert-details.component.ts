@@ -5,6 +5,7 @@ import { map,tap } from 'rxjs/operators';
 import { FirebaseService } from '../firebase.service';
 import { transfert,TRANSFERT_FUNCTION } from 'src/types/transfert';
 import { ToastService } from '../toast.service';
+import { stypes } from 'src/types/utils/form-item';
 const WORKING_STATE='WORKING';
 const REQUEST_STATES=[{
   label:'Open',value:'Open'},
@@ -136,5 +137,100 @@ export class TransfertDetailsComponent implements OnInit {
 
   }
 
-
+  transfertFields: any[] = [
+    {
+      label: 'Amount',
+      name: 'amount',
+      type: stypes.number,
+      xs: '6',
+      sm: '6',
+      md: '6',
+      lg: '6',
+      xl: '6',
+    },
+    {
+      label: 'Status',
+      name: 'status',
+      type: stypes.text,
+      xs: '6',
+      sm: '6',
+      md: '6',
+      lg: '6',
+      xl: '6',
+    },
+    {
+      label: 'Description',
+      name: 'description',
+      type: stypes.text,
+      xs: '12',
+      sm: '12',
+      md: '12',
+      lg: '12',
+      xl: '12',
+    },
+  ];
+  zoneFields: any[] = [
+    {
+      label: 'Name',
+      name: 'name',
+      type: stypes.text,
+      xs: '6',
+      sm: '6',
+      md: '6',
+      lg: '6',
+      xl: '6',
+    },
+    {
+      label: 'Code',
+      name: 'code',
+      type: stypes.text,
+      xs: '6',
+      sm: '6',
+      md: '6',
+      lg: '6',
+      xl: '6',
+    },
+    {
+      label: 'Country',
+      name: 'country.name',
+      type: stypes.text,
+      xs: '12',
+      sm: '12',
+      md: '12',
+      lg: '12',
+      xl: '12',
+    },
+  ];
+  userFields: any[] = [
+    {
+      label: 'First Name',
+      name: 'firstname',
+      type: stypes.text,
+      xs: '6',
+      sm: '6',
+      md: '6',
+      lg: '6',
+      xl: '6',
+    },
+    {
+      label: 'Last Name',
+      name: 'lastname',
+      type: stypes.text,
+      xs: '6',
+      sm: '6',
+      md: '6',
+      lg: '6',
+      xl: '6',
+    },
+    {
+      label: 'Email',
+      name: 'email',
+      type: stypes.text,
+      xs: '12',
+      sm: '12',
+      md: '12',
+      lg: '12',
+      xl: '12',
+    },
+  ];
 }
