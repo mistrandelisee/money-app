@@ -83,7 +83,7 @@ enableProdMode();
     VDatatableComponent,
     VDatatableHeaderComponent,
     VDatatableRowComponent,
-    UsersListViewComponent
+    UsersListViewComponent,
     VOutputFieldsComponent,
     VOutputFieldComponent,
     CountryCreationComponent,
