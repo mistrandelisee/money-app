@@ -11,6 +11,10 @@ export class TestfireComponent {
   isLoading:string='';
   result:any;
   error:any;
+  record={
+    elt1:'info',
+    elt2:{in:555}
+  }
   constructor( public firebaseService:FirebaseService ){}
   public  onClick() {
     // const function_name='testFunctionAuth';

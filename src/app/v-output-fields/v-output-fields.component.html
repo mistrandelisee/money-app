@@ -1,0 +1,11 @@
+<div class="">
+
+  <div class="slds-form slds-grid slds-wrap">
+    <div class={{item.sclass}} *ngFor="let item of items trackBy: trackItem">
+      <app-v-output-field  [vitem]="item" ></app-v-output-field>
+    </div>
+</div>
+<!-- <button class="slds-button slds-button_neutral" (click)="doSubmit()">save </button> -->
+
+
+</div>

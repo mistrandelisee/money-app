@@ -1,4 +1,4 @@
-import { Component,Input,ViewChild, ElementRef, } from '@angular/core';
+import { Component,Input,ViewChild, ElementRef, Output,EventEmitter} from '@angular/core';
 import { Iitem } from 'src/types/utils/form-item';
 
 @Component({
@@ -40,6 +40,15 @@ export class VFormItemComponent {
     console.log('in validate')
     this.itemCmp?.nativeElement.checkValidity();
     return this.itemCmp?.nativeElement.validity.valid;
+  }
+  timer:any|null;
+  doChange(event:any){
+    console.log(event.target);
+
+  }
+  @Output() valueChanged: EventEmitter<any> = new EventEmitter();
+  notify(obj:any):void {
+    this.valueChanged.emit(obj);
   }
 
 
