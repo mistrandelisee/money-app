@@ -1,0 +1,24 @@
+{
+  "name": "My test extension",
+  "version": "2.0",
+  "description": "You can take notes, which includes text, lists, links & images. We can export our notes in the form of html..",
+  "manifest_version": 3,
+  "icons": {
+    "16": "assets/images/group_avatar_160.png",
+    "32": "assets/images/group_avatar_160.png",
+    "48": "assets/images/group_avatar_160.png",
+    "128": "assets/images/group_avatar_160.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "assets/images/profile_avatar_160.png",
+      "24": "assets/images/profile_avatar_160.png"
+    },
+    "default_title": "Click Me",
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+
+}
