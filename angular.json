@@ -25,9 +25,10 @@
               "src/assets",
               "src/manifest.json",
               "src/background.js",
-              { "glob": "**/*", "input": "./node_modules/@salesforce-ux/design-system/assets/fonts", "output": "/assets/fonts/" },
-              { "glob": "**/*", "input": "./node_modules/@salesforce-ux/design-system/assets/icons", "output": "/assets/icons/" },
-              { "glob": "**/*", "input": "./node_modules/@salesforce-ux/design-system/assets/images", "output": "/assets/images/" }
+              { "glob": "**/*", "input": "./node_modules/@salesforce-ux/design-system/assets/fonts", "output": "/money-app/assets/fonts/" },
+              { "glob": "**/*", "input": "./node_modules/@salesforce-ux/design-system/assets/icons/standard-sprite", "output": "/money-app/assets/icons/standard-sprite" },
+              { "glob": "**/*", "input": "./node_modules/@salesforce-ux/design-system/assets/icons/utility-sprite", "output": "/money-app/assets/icons/utility-sprite" }
+
             ],
             "styles": [
               "src/styles.css",
