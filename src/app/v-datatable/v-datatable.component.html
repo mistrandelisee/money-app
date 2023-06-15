@@ -2,7 +2,7 @@
   aria-label="Example table of Opportunities with vertical borders">
   <thead>
     <tr class="slds-line-height_reset">
-      <th class="slds-is-resizable slds-is-sortable slds-is-sorted slds-is-sorted_asc slds-cell_action-mode" scope="col" *ngFor="let col of _columns">
+      <th [class]="'slds-is-resizable slds-is-sortable slds-is-sorted  slds-cell_action-mode'" scope="col" *ngFor="let col of _columns TrackBy:trackItem">
         <app-v-datatable-header  [vcol]="col" (sort)="onSorted($event)"></app-v-datatable-header>
       </th>
     </tr>

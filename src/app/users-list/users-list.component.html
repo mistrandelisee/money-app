@@ -12,14 +12,16 @@
     </header>
   </div>
   <div class="slds-card__body slds-card__body_inner">
-    <!-- <div class="slds-grid slds-wrap">
-      <div class="slds-col slds-size_4-of-12 slds-m-around_xx-small" *ngFor="let user of users">
-        <app-v-card [fields]="fields" [info]="user" [title]="user.firstname || user.lastname || user.email"  [keyField]="user.id" [routerLink]="'/users/'+user.id"></app-v-card>
+    <div class="slds-tabs_default">
+      <ul class="slds-tabs_default__nav" role="tablist">
+        <li [class]="'slds-tabs_default__item ' +((tab.id==activetab)?' slds-is-active ':'') " title="Item One" role="presentation" *ngFor="let tab of tabConfigs trackBy: trackItem" (click)="activetab=tab.id;">
+          <a class="slds-tabs_default__link"  role="tab" tabindex="0" aria-selected="true" [attr.aria-controls]="tab.id" [id]="tab.id+'__item'" (click)="activetab=tab.id;">{{tab.title}}</a>
+        </li>
+      </ul>
+      <div [id]="tab.id" [class]="'slds-tabs_default__content '+((tab.id==activetab)?' slds-show ':'slds-hide')" role="tabpanel" [attr.aria-labelledby]="tab.id+'__item'" *ngFor="let tab of tabConfigs trackBy: trackItem">
+        <app-users-list-view *ngIf="hasusers" [filterCallback]="tab.callback"></app-users-list-view>
       </div>
-    </div> -->
-    <div *ngIf="hasusers">
-      <app-v-datatable [vcolumns]="columns" [vdata]="_users" (rowClicked)="onCkiclicked($event)"></app-v-datatable>
-
+      
     </div>
   </div>
 </article>

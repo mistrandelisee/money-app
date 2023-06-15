@@ -38,6 +38,7 @@ import { VFormComponent } from './v-form/v-form.component';
 import { VDatatableComponent } from './v-datatable/v-datatable.component';
 import { VDatatableHeaderComponent } from './v-datatable-header/v-datatable-header.component';
 import { VDatatableRowComponent } from './v-datatable-row/v-datatable-row.component';
+import { UsersListViewComponent } from './users-list-view/users-list-view.component';
 
 enableProdMode();
 @NgModule({
@@ -74,7 +75,8 @@ enableProdMode();
     VFormComponent,
     VDatatableComponent,
     VDatatableHeaderComponent,
-    VDatatableRowComponent
+    VDatatableRowComponent,
+    UsersListViewComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,

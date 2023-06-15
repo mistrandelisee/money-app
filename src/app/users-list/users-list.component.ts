@@ -13,6 +13,41 @@ export class UsersListComponent {
   constructor(public firebase:FirebaseService, private router:Router){
     //this.firebase.users=[]
   }
+  filterAdmin=(elt:any)=>elt.role?.toLocaleUpperCase()=='ADMIN';
+  filterClient=(elt:any)=>elt.role?.toLocaleUpperCase()=='CLIENT' || elt.role?.toLocaleUpperCase()=='USER';
+  filterAgent=(elt:any)=>elt.role?.toLocaleUpperCase()=='AGENT';
+  filterManager=(elt:any)=>{
+   return elt.role?.toLocaleUpperCase()=='MANAGER'
+  };
+  activetab='Admin'
+  get tabConfigs():any[]{
+    return [
+      {
+        title: 'Admin',
+        id: 'Admin',
+        icon: 'person',
+        callback: this.filterAdmin
+      },
+      {
+        title: 'CLIENT',
+        id: 'CLIENT',
+        icon: 'person',
+        callback: this.filterClient
+      },
+      {
+        title: 'AGENT',
+        id: 'AGENT',
+        icon: 'person',
+        callback: this.filterAgent
+      },
+      {
+        title: 'MANAGER',
+        id: 'MANAGER',
+        icon: 'person',
+        callback: this.filterManager
+      }
+    ]
+  }
   users:any[]=[]
   fields=[
     {
@@ -46,6 +81,10 @@ export class UsersListComponent {
     {
       label:'status', fieldName:'status',
     },
+    
+    {
+      label:'created Date', fieldName:'createdDate',
+    },
   ]
   get _users():any[]{
     return this.users?.map(function(_user){
@@ -54,7 +93,7 @@ export class UsersListComponent {
     });
   }
   ngOnInit(): void {
-    //this.users=this.firebase.users
+    this.firebase.users=[]
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     const data=user.buildAdminGet()
@@ -64,7 +103,7 @@ export class UsersListComponent {
       (_data:any)=>{
         console.log(_data);
         this.users=_data.body;
-        //this.firebase.users=this.users
+        this.firebase.users=this.users
 
       }
     )
@@ -75,6 +114,31 @@ export class UsersListComponent {
     })
 
   }
+  getUsers(): void {
+    this.firebase.users=[]
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    const data=user.buildAdminGet()
+
+
+    this.firebase.callFunction(USER_FUNCTION,data).then(
+      (_data:any)=>{
+        console.log(_data);
+        this.users=_data.body;
+        this.firebase.users=this.users
+
+      }
+    )
+    .catch((err:any)=>{
+      //this.showErrorToast(err?.body, err?.message)
+      //console.error(err);
+      this.users=[]
+    })
+
+  }
+  refresh(){
+    this.getUsers()
+  }
   public get hasusers() : boolean {
     return this.users?.length >0
   }
@@ -83,5 +147,8 @@ export class UsersListComponent {
   }
   goto(pathname:string){
     this.router.navigateByUrl(pathname)
+  }
+  trackItem(index: number, item: any) {
+    return item.id;
   }
 }

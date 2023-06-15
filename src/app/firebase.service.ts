@@ -42,6 +42,7 @@ export class FirebaseService {
   public messaging:any;
   public isloading:boolean;
   public transferts:any[]=[];
+  public users:any[]=[];
   public transactions:any[]=[];
   constructor(public toastservice: ToastService) {
     this.isloading=false;
