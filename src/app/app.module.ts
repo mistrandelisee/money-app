@@ -46,6 +46,7 @@ import { CityCreationComponent } from './city-creation/city-creation.component';
 import { CountryListComponent } from './country-list/country-list.component';
 import { CityListComponent } from './city-list/city-list.component';
 import { AdminZoneComponent } from './admin-zone/admin-zone.component';
+import { VSearchComponent } from './v-search/v-search.component';
 
 enableProdMode();
 @NgModule({
@@ -90,7 +91,8 @@ enableProdMode();
     CityCreationComponent,
     CountryListComponent,
     CityListComponent,
-    AdminZoneComponent
+    AdminZoneComponent,
+    VSearchComponent
   ],
   imports: [
     BrowserModule,NglModule,FormsModule,

@@ -24,7 +24,7 @@ export class TransfertDetailsComponent implements OnInit {
   public transfert:any={}
   action='';
   public get title() : string {
-    return `${this.transfert?.inZone.country.name} --> ${this.transfert?.outZone?.country?.name}` || this.transfert?.id
+    return `${this.transfert?.inZone?.country.name} --> ${this.transfert?.outZone?.country?.name}` || this.transfert?.id
    }
   public get ownerProps() : any[] {
     return Object.entries(this.transfert?.owner|| {});
