@@ -1,6 +1,6 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
 import { COUNTRY_FUNCTION, country } from 'src/types/country';
-import { stypes } from 'src/types/utils/datatable';
+import { stypes, variant } from 'src/types/utils/datatable';
 import { FirebaseService } from '../firebase.service';
 import { Router } from '@angular/router';
 
@@ -21,6 +21,13 @@ export class CountryListComponent {
     },
     {
       label:'Currency', fieldName:'currency',sortable:true
+    },
+    {
+      label:'', value:'Delete',
+      type:stypes.button,
+      attributes: {
+        variant: variant.destructive
+      }
     },
   ]
 
@@ -54,14 +61,34 @@ export class CountryListComponent {
     return this.countries?.length >0
   }
   onCkiclicked(row:any){
-    this.goto('/country/'+row.id)
+    console.log(row);
+    if(row?.column?.fieldName=='id')
+        this.goto('/country/'+row.id)
+      else
+        if (row?.column?.value=='Delete') this.handleDelete(row)
   }
   goto(pathname:string){
     this.router.navigateByUrl(pathname)
   }
+  handleDelete(row:any){
+    const _confirm= window.confirm('Are you sure you want to delete?')
+    console.log('............'+_confirm );
+    if(_confirm){
+      console.log('............ handle delete request '+row.id);
+      const data=country.buildDeleteRequest(row.id)
+      this.firebase.callFunction(COUNTRY_FUNCTION,data).then(
+        (_data:any)=>{
+          console.log(_data);
+          this.getCountries();
+        }
+      )
+      .catch((err:any)=>{
+      })
+    }
+  }
 
 
-  
+
   openModal=false;
   public doClose(){
     this.openModal=false
