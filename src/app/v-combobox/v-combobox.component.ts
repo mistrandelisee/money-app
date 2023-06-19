@@ -8,7 +8,9 @@ import { Component, EventEmitter, Input, Output, ɵAPP_ID_RANDOM_PROVIDER } from
 export class VComboboxComponent {
   @Output() valuechange: EventEmitter<any> = new EventEmitter();
   @Input()
-  vlabel='Selected label';
+  vlabel='';
+  @Input()
+  position='bottom';
   @Input()
   vvalue='';
   @Input() vlabelkey='label'
@@ -36,10 +38,16 @@ export class VComboboxComponent {
   get ckey(){
     return Math.random()
   }
+  options:any[]=[]
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.options=[...this.voptions]
+  }
   get _voptions(){
     const klabel = this.vlabelkey;
     const kvalue = this.vvaluekey;
-    return this.voptions.map(function(option:any){
+    return this.options.map(function(option:any){
       return {label:option[klabel], value:option[kvalue],...option};
     });
   }
@@ -66,5 +74,8 @@ export class VComboboxComponent {
   }
   notify(opt:any) {
     this.valuechange.emit({...opt});
+  }
+  trackItem(index: number, item: any) {
+    return item.name;
   }
 }

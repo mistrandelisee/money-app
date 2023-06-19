@@ -24,7 +24,7 @@
 
     </thead>
     <tbody >
-      <tr class="slds-hint-parent" *ngFor="let row of itemsToShow" >
+      <tr class="slds-hint-parent" *ngFor="let row of dataToDisplay" >
         <td [attr.data-label]="col.label" *ngFor="let col of _columns" >
           <app-v-datatable-row  [vcol]="col" [vrow]="row" (rowClicked)="onCkiclicked($event)"></app-v-datatable-row>
         </td>
@@ -54,7 +54,7 @@
     </div>
   </div>
   <div class="slds-col slds-size_4-of-12">
-    <app-v-combobox [voptions]="options" (valuechange)="pageChange($event)"></app-v-combobox>
+    <app-v-combobox [voptions]="options" (valuechange)="pageChange($event)" position="top" [vvalue]="pageSize+''"></app-v-combobox>
   </div>
 </div>
 

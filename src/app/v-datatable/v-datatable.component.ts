@@ -9,12 +9,12 @@ import { col } from 'src/types/utils/datatable';
 export class VDatatableComponent {
 
   @Input() vcolumns:any[]=[]
-  @Input() vdata:any[]=[]
+  @Input() vdata:any[]=[]//all incoming data
   @Input() title='';
 
   @Output() rowClicked: EventEmitter<any> = new EventEmitter();
 
-  _vdata:any[]=[]
+  _vdata:any[]=[]//data filtered(temporary data depending of the search)
   dir:any={};
   isLoading:boolean=false;
   startIndex = 0;
@@ -25,7 +25,7 @@ export class VDatatableComponent {
         return this.vdata.length > 0 ? true : false;
   }
   get hastitle():boolean{ return !! this.title }
-  get _title(){ return `${this.title} (${this.vdata?.length})` }
+  get _title(){ return `${this.title|| 'Total Elements'} (${this._vdata?.length})` }
   get _data(){ return this.vdata; }
   get _columns():col[]{ return this.vcolumns?.map(_col =>Object.assign(new col(), _col)) || [] }
   get _searchableColumns():string[]{
@@ -42,13 +42,13 @@ export class VDatatableComponent {
         return this._vdata.length == this.lastIndex;
     }
 
-    get itemsToShow() {
+    get dataToDisplay() { // data o displayon the current view
         let begin = this.startIndex;
         let end = Math.min(this._vdata.length, this.lastIndex);
         return this._vdata.slice(begin, end);
     }
 
-    set itemsToShow(data) {
+    set dataToDisplay(data) {
         let clonedData = [...this._vdata];
 
         let begin = this.startIndex;
@@ -91,7 +91,7 @@ export class VDatatableComponent {
     this.dir[sortKey]= !this.dir[sortKey]
 
     console.log(this.dir);
-    this.itemsToShow=this.sortList(sortKey,[...this.itemsToShow],this.dir[sortKey])
+    this.dataToDisplay=this.sortList(sortKey,[...this.dataToDisplay],this.dir[sortKey])
   }
   sortList(key:string, items:any[], asc=true){
     let sortedItems = items.sort(
