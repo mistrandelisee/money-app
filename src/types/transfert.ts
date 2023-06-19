@@ -45,8 +45,8 @@ export class transfert {
     }
     public  init(request:any):void{
       this.amount=request.amount;
-      this.outZoneCity=request?.outZone.id;
-      this.inZoneCity=request?.inZone.id;
+      this.outZoneCity=request?.outZone?.id;
+      this.inZoneCity=request?.inZone?.id;
       this.status=request.status;
       try {
         this.createdDate=new Date(request.createdDate) .toJSON();

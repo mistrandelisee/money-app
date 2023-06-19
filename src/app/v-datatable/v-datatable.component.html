@@ -1,20 +1,60 @@
-<table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
-  aria-label="Example table of Opportunities with vertical borders">
-  <thead>
-    <tr class="slds-line-height_reset">
-      <th [class]="'slds-is-resizable slds-is-sortable slds-is-sorted  slds-cell_action-mode'" scope="col" *ngFor="let col of _columns TrackBy:trackItem">
-        <app-v-datatable-header  [vcol]="col" (sort)="onSorted($event)"></app-v-datatable-header>
-      </th>
-    </tr>
 
-  </thead>
-  <tbody>
-    <tr class="slds-hint-parent" *ngFor="let row of _vdata">
-      <td data-label="Account Name" *ngFor="let col of _columns">
-        <app-v-datatable-row  [vcol]="col" [vrow]="row" (rowClicked)="onCkiclicked($event)"></app-v-datatable-row>
-      </td>
+<div class="slds-clearfix slds-p-bottom_x-large slds-is-relative">
+  <div class="slds-float_left" style="position: absolute;bottom: 1rem;">
+    <!-- <h2 class="slds-card__header-title" *ngIf="hastitle">
+      <a  class="slds-card__header-link slds-truncate" [title]="title">
+        <span>{{_title}}</span>
+      </a>
+    </h2> -->
+    <h2 class="slds-truncate ">{{_title}}</h2>
+  </div>
+  <div class="slds-float_right" style="position: relative;bottom: 0rem;top: 1rem;">
+    <app-v-search (search)="onSearch($event)" [isLoading]="isLoading" timeout="2000" [value]="searchTerm"></app-v-search>
+  </div>
+</div>
+<div [style]="'min-height:'+(pageSize*4.2)+'vh;'">
+  <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+    aria-label="Example table of Opportunities with vertical borders">
+    <thead>
+      <tr class="slds-line-height_reset">
+        <th [class]="'slds-is-resizable slds-is-sortable slds-is-sorted  slds-cell_action-mode'" scope="col" *ngFor="let col of _columns TrackBy:trackItem">
+          <app-v-datatable-header  [vcol]="col" (sort)="onSorted($event)"></app-v-datatable-header>
+        </th>
+      </tr>
 
-    </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody >
+      <tr class="slds-hint-parent" *ngFor="let row of dataToDisplay" >
+        <td [attr.data-label]="col.label" *ngFor="let col of _columns" >
+          <app-v-datatable-row  [vcol]="col" [vrow]="row" (rowClicked)="onCkiclicked($event)"></app-v-datatable-row>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="slds-grid slds-p-top_medium">
+  <div class="slds-col slds-size_8-of-12 slds-grid_align-center ">
+    <div *ngIf="showPagination" class="slds-align_absolute-center">
+        <div class="slds-button-group" role="group">
+          <button class="slds-button slds-button_neutral" (click)="handlePrev()" [disabled]="isFirstIndex">
+            <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronleft"></use>
+            </svg>Previous
+          </button>
+          <button class="slds-button slds-button_neutral" disabled="">{{navigationState}}</button>
+          <button class="slds-button slds-button_neutral" (click)="handleNext()" [disabled]="isLastIndex">Next
+            <svg class="slds-button__icon slds-button__icon_right" aria-hidden="true">
+              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
+            </svg>
+          </button>
+        </div>
+    </div>
+  </div>
+  <div class="slds-col slds-size_4-of-12">
+    <app-v-combobox [voptions]="options" (valuechange)="pageChange($event)" position="top" [vvalue]="pageSize+''"></app-v-combobox>
+  </div>
+</div>
 

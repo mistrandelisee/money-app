@@ -4,6 +4,7 @@ export class col {
   type: supportedTypes=stypes.text;
   hideLabel?: boolean;
   sortable?: boolean;
+  searcheable?: boolean=true;
 
   get tojson() { return JSON.stringify(this) }
   get _type() { return <string> this.type}
