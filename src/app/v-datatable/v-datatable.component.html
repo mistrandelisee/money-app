@@ -24,8 +24,8 @@
 
     </thead>
     <tbody >
-      <tr class="slds-hint-parent" *ngFor="let row of dataToDisplay" >
-        <td [attr.data-label]="col.label" *ngFor="let col of _columns" >
+      <tr class="slds-hint-parent" *ngFor="let row of dataToDisplay TrackBy:trackItem" >
+        <td [attr.data-label]="col.label" *ngFor="let col of _columns TrackBy:trackItem" >
           <app-v-datatable-row  [vcol]="col" [vrow]="row" (rowClicked)="onCkiclicked($event)"></app-v-datatable-row>
         </td>
 

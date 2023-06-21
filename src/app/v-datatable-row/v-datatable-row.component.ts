@@ -16,12 +16,20 @@ export class VDatatableRowComponent {
     this.rowClicked.emit({...event});
   }
   onCkiclicked(){
-    this.notify(this.vrow)
+    this.notify({...this.vrow, column: this.vcol});
   }
   get value(){
-    return this.vrow[this.vcol?.fieldName]
+    return this.vrow[this.vcol?.fieldName] || this.vcol.value
   }
+
   get isbutton(){
     return this.vcol?.type==stypes.button
+  }
+  get _class(){
+    let __class='';
+    __class=__class +' ' +this.vcol._btnClass;
+    // console.log('class is:: ' + __class);
+
+    return __class
   }
 }

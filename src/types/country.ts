@@ -3,6 +3,7 @@ export  const COUNTRY_FUNCTION ='nl_manage_country'
 const GET_COUNTRY = "GET-ALL-WITH-CITIES";
 const GET_ALL = "GET-ALL";
 const SAVE = "SAVE";
+const DELETE = "DELETE";
 export class country{
     name= '';
     currency='';
@@ -26,4 +27,9 @@ export class country{
         req.action=GET_COUNTRY;
         return {...req}
     }
+    public static buildDeleteRequest(countryId:string): any{
+      const req=new baseRequest();
+      req.action=DELETE;
+      return {...req,countryId}
+  }
 }
