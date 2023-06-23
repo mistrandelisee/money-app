@@ -2,13 +2,13 @@
   <div class="slds-card__header slds-grid">
     <header class="slds-media slds-media_center slds-has-flexi-truncate">
 
-      <div class="slds-media__body slds-text-align_center">
+      <!-- <div class="slds-media__body slds-text-align_center">
         <h2 class="slds-card__header-title">
           <a href="#" class="slds-card__header-link slds-truncate slds-text-heading_large"  title="Accounts">
             <span>List of users ({{users.length}})</span>
           </a>
         </h2>
-      </div>
+      </div> -->
     </header>
   </div>
   <div class="slds-card__body slds-card__body_inner">
@@ -19,9 +19,9 @@
         </li>
       </ul>
       <div [id]="tab.id" [class]="'slds-tabs_default__content '+((tab.id==activetab)?' slds-show ':'slds-hide')" role="tabpanel" [attr.aria-labelledby]="tab.id+'__item'" *ngFor="let tab of tabConfigs trackBy: trackItem">
-        <app-users-list-view *ngIf="hasusers" [filterCallback]="tab.callback"></app-users-list-view>
+        <app-users-list-view *ngIf="hasusers" [title]="tab.listTitle" [filterCallback]="tab.callback"></app-users-list-view>
       </div>
-      
+
     </div>
   </div>
 </article>

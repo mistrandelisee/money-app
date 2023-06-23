@@ -27,6 +27,7 @@ export class VZoneComponent {
         _countries.push( {id:country.id, name:country.name} )
       }
     });
+    console.log(`_countries`, _countries);
     return _countries ||[]
 
   }

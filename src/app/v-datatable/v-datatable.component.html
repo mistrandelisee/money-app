@@ -6,7 +6,7 @@
         <span>{{_title}}</span>
       </a>
     </h2> -->
-    <h2 class="slds-truncate ">{{_title}}</h2>
+    <h2 class="slds-truncate slds-text-heading_large slds-card__header-title">{{_title}}</h2>
   </div>
   <div class="slds-float_right" style="position: relative;bottom: 0rem;top: 1rem;">
     <app-v-search (search)="onSearch($event)" [isLoading]="isLoading" timeout="2000" [value]="searchTerm"></app-v-search>

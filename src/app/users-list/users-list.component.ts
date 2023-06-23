@@ -26,24 +26,28 @@ export class UsersListComponent {
         title: 'Admin',
         id: 'Admin',
         icon: 'person',
+        listTitle:'List Of Admins',
         callback: this.filterAdmin
       },
       {
         title: 'CLIENT',
         id: 'CLIENT',
         icon: 'person',
+        listTitle:'List Of Clients',
         callback: this.filterClient
       },
       {
         title: 'AGENT',
         id: 'AGENT',
         icon: 'person',
+        listTitle:'List Of Agents',
         callback: this.filterAgent
       },
       {
         title: 'MANAGER',
         id: 'MANAGER',
         icon: 'person',
+        listTitle:'List Of Managers',
         callback: this.filterManager
       }
     ]
@@ -81,7 +85,7 @@ export class UsersListComponent {
     {
       label:'status', fieldName:'status',
     },
-    
+
     {
       label:'created Date', fieldName:'createdDate',
     },

@@ -47,7 +47,7 @@ export class VComboboxComponent {
   get _voptions(){
     const klabel = this.vlabelkey;
     const kvalue = this.vvaluekey;
-    return this.options.map(function(option:any){
+    return this.voptions.map(function(option:any){
       return {label:option[klabel], value:option[kvalue],...option};
     });
   }

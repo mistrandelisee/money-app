@@ -16,6 +16,8 @@ export class UsersListViewComponent {
   }
   @Input()
   filterCallback:any=(elt:any)=>elt.role=='ADMIN';
+  @Input()
+  title:string='';
   users:any[]=[]
   fields=[
     {
@@ -49,7 +51,7 @@ export class UsersListViewComponent {
     {
       label:'status', fieldName:'status',
     },
-    
+
     {
       label:'created Date', fieldName:'createdDate',
     },
@@ -71,7 +73,7 @@ export class UsersListViewComponent {
   }
   ngOnInit(): void {
     //this.users=this.firebase.users
-    
+
     try {
       this.users=this.filterUsers();
       console.log(this.users);
@@ -79,7 +81,7 @@ export class UsersListViewComponent {
       console.error(error);
       this.users=[]
     }
-    
+
 
   }
   public get hasusers() : boolean {
