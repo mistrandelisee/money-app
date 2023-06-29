@@ -4,9 +4,12 @@
     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate" (click)="onCkiclicked($event)">
       <span class="slds-truncate" title={{_vcol.label}}>{{_vcol.label}}</span>
       <span class="slds-icon_container slds-icon-utility-arrowdown">
-        <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
+        <!-- <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
           <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
-        </svg>
+        </svg> -->
+        <app-v-icon vclass="slds-icon slds-icon-text-default slds-is-sortable__icon"
+                    vhref="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></app-v-icon>
+
       </span>
     </div>
   </ng-container>

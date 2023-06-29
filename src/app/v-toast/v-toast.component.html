@@ -3,9 +3,11 @@
     <span class="slds-assistive-text">{{vIconText}}</span>
     <span [class]="'slds-icon_container '+vIconClass+' slds-m-right_small slds-no-flex slds-align-top'"
       title="Description of icon when needed">
-      <svg class="slds-icon slds-icon_small" aria-hidden="true">
+      <!-- <svg class="slds-icon slds-icon_small" aria-hidden="true">
         <use [attr.xlink:href]='vIcon'></use>
-      </svg>
+      </svg> -->
+      <app-v-icon vclass="slds-icon slds-icon_small"  [vhref]="vIcon"></app-v-icon>
+
     </span>
     <div class="slds-notify__content">
       <h2 class="slds-text-heading_small">{{title}}</h2>
@@ -14,9 +16,11 @@
     </div>
     <div class="slds-notify__close">
       <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" (click)="close()">
-        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+        <!-- <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
           <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-        </svg>
+        </svg> -->
+        <app-v-icon vclass="slds-button__icon slds-button__icon_large" vhref="/assets/icons/utility-sprite/svg/symbols.svg#close"></app-v-icon>
+
         <span class="slds-assistive-text">Close</span>
       </button>
     </div>

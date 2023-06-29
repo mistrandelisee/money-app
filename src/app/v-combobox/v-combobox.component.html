@@ -10,9 +10,11 @@
                 role="option" (click)="doclick(option)">
                 <span class="slds-media__figure slds-listbox__option-icon" *ngIf="option.value==vvalue">
                   <span class="slds-icon_container slds-icon-utility-check slds-current-color">
-                    <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
-                      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                    </svg>
+                    <!-- <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                      <use xlink:href="/money-app/assets/icons/utility-sprite/svg/symbols.svg#check , /assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                    </svg> -->
+                    <app-v-icon vclass="slds-icon slds-icon_small" vhref="/assets/icons/utility-sprite/svg/symbols.svg#check"></app-v-icon>
+
                   </span>
                 </span>
                 <span class="slds-media__body" (click)="doclick(option)">
@@ -30,9 +32,11 @@
             <span class="slds-truncate" id="combobox-value-id-95">{{selectedOption || 'select Option'}}</span>
           </div>
           <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
-            <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+            <!-- <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
               <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
-            </svg>
+            </svg> -->
+            <app-v-icon vclass="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" vhref="/assets/icons/utility-sprite/svg/symbols.svg#down"></app-v-icon>
+
           </span>
         </div>
         <div  class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox"  tabindex="0" aria-busy="false" *ngIf="position=='bottom'">
@@ -42,9 +46,10 @@
                 role="option" (click)="doclick(option)">
                 <span class="slds-media__figure slds-listbox__option-icon" *ngIf="option.value==vvalue">
                   <span class="slds-icon_container slds-icon-utility-check slds-current-color">
-                    <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
-                      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                    </svg>
+                    <app-v-icon vclass="slds-icon slds-icon_x-small" vhref="/assets/icons/utility-sprite/svg/symbols.svg#check"></app-v-icon>
+                    <!-- <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                      <use xlink:href="/money-app/assets/icons/utility-sprite/svg/symbols.svg#check , /assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                    </svg> -->
                   </span>
                 </span>
                 <span class="slds-media__body" (click)="doclick(option)">

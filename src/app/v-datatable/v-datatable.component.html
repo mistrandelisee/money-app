@@ -40,15 +40,20 @@
     <div *ngIf="showPagination" class="slds-align_absolute-center">
         <div class="slds-button-group" role="group">
           <button class="slds-button slds-button_neutral" (click)="handlePrev()" [disabled]="isFirstIndex">
-            <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+            <!-- <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
               <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronleft"></use>
-            </svg>Previous
+            </svg> -->
+            <app-v-icon vclass="slds-button__icon slds-button__icon_left" vhref="/assets/icons/utility-sprite/svg/symbols.svg#chevronleft"></app-v-icon>
+
+            Previous
           </button>
           <button class="slds-button slds-button_neutral" disabled="">{{navigationState}}</button>
           <button class="slds-button slds-button_neutral" (click)="handleNext()" [disabled]="isLastIndex">Next
-            <svg class="slds-button__icon slds-button__icon_right" aria-hidden="true">
+            <!-- <svg class="slds-button__icon slds-button__icon_right" aria-hidden="true">
               <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
-            </svg>
+            </svg> -->
+            <app-v-icon vclass="slds-button__icon slds-button__icon_right" vhref="/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></app-v-icon>
+
           </button>
         </div>
     </div>

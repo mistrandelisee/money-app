@@ -2,9 +2,11 @@
 <div class="slds-form-element">
   <label class="slds-form-element__label" for="text-input-id-49" *ngIf="showLabel">{{title}}</label>
   <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right slds-input-has-icon_group-right">
-    <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+    <!-- <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
       <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
-    </svg>
+    </svg> -->
+    <app-v-icon vclass="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" vhref="/assets/icons/utility-sprite/svg/symbols.svg#search"></app-v-icon>
+
     <input type="text" id="text-input-id-49" placeholder="Placeholder text…" class="slds-input" [value]="value" [(ngModel)]="value" (keyup)="onTyped($event)"/>
     <div class="slds-input__icon-group slds-input__icon-group_right" >
       <div role="status" class="slds-spinner slds-spinner_brand slds-spinner_x-small slds-input__spinner" *ngIf="isLoading">
@@ -13,9 +15,11 @@
         <div class="slds-spinner__dot-b"></div>
       </div>
       <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Clear" (click)="Clear()">
-        <svg class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+        <!-- <svg class="slds-button__icon slds-icon-text-light" aria-hidden="true">
           <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#clear"></use>
-        </svg>
+        </svg> -->
+        <app-v-icon vclass="slds-button__icon slds-icon-text-light" vhref="/assets/icons/utility-sprite/svg/symbols.svg#clear"></app-v-icon>
+
         <span class="slds-assistive-text">Clear</span>
       </button>
     </div>
