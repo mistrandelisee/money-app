@@ -24,7 +24,7 @@ export class VOutputFieldsComponent {
     if (!field || !obj) return ''
     if(!!field && field.includes('.')) {
       obj=obj[field.split('.')[0]];
-      field=field.split('.')[1];
+      field=field.substring( field.indexOf('.')+1)
       return this.getValue(obj, field)
     }
     else return obj[field]
