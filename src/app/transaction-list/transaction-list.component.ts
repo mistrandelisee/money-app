@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
+import { TRANSACTION_FUNCTION, transaction } from 'src/types/transaction';
 
 @Component({
   selector: 'app-transaction-list',
@@ -28,10 +29,8 @@ export class TransactionListComponent implements OnInit {
     this.transactions=this.firebase.transactions
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    const data={
-      "action":"GET-LIST"
-    }
-    this.firebase.callFunction('manage_transaction',data).then(
+    const data=transaction.buildGetRequests()
+    this.firebase.callFunction(TRANSACTION_FUNCTION,data).then(
       (data:any)=>{
 
         this.transactions=data?.body;

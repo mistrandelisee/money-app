@@ -17,12 +17,17 @@ export class ApprovalDetailsComponent {
       key:'status',
     },
     {
-      label:'isprimary',
-      key:'isprimary',
+      label:'fees',
+      key:'fees',
     },
     {
-      label:'vueClient',
-      key:'vueClient',
+      label:'amount',
+      key:'amount',
     }
   ]
+
+  get _approval():any{
+    const {transfert, transaction , ...info }= this.approval;
+    return { ...info, transfertId: transfert.id, amount: transfert.amount,}
+  }
 }

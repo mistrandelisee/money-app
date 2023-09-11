@@ -61,6 +61,7 @@ export class VDatatableComponent {
         { label: '5 per page', value: '5' },
         { label: '8 per page', value: '8' },
         { label: '10 per page', value: '10' },
+        { label: '100 per page', value: '100' },
     ];
 }
 

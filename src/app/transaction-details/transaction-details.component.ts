@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes ,ActivatedRoute} from '@angular/router';
+import { TRANSACTION_FUNCTION, transaction } from 'src/types/transaction';
 
 import { map,tap } from 'rxjs/operators';
 import { FirebaseService } from '../firebase.service';
@@ -38,16 +39,20 @@ export class TransactionDetailsComponent implements OnInit {
   }
   public gettransaction(){
     this.transaction= this.firebase.transactions.find(x=>x.id==this.id);
-    const data={
-      "action":"GET-INFO",
-      "code":  this.id
-    }
-    this.firebase.callFunction('manage_transaction',data).then(
+    // const data={
+    //   "action":"GET-INFO",
+    //   "code":  this.id
+    // }
+    const data=transaction.buildGetInfo(this.id)
+    this.firebase.callFunction(TRANSACTION_FUNCTION,data).then(
       (data:any)=>{
         console.log(data);
         if(!! data?.body)
-          {this.transaction= data?.body.transaction;
-          this.items= data?.body.approvals}
+          {
+            const {approvals,...rest }=data.body;
+            this.transaction= rest;
+            this.items=approvals
+          }
           else
           this.transaction={}
       }
